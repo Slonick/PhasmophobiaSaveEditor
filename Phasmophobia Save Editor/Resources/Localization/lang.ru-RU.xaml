@@ -14,6 +14,11 @@
     <v:String x:Key="Main.Saved">Изменения успешно сохранены.</v:String>
     <v:String x:Key="Main.SaveNotExist">Файл сохранения не найден.</v:String>
     <v:String x:Key="Main.SaveCorrupted">Файл сохранения повреждён.</v:String>
+    <v:String x:Key="Main.GeneralAgreements">Phasmophobia Save Editor - Соглашение</v:String>
+    <v:String x:Key="Main.GeneralAgreementsText" xml:space="preserve">Эта программа относительно безопасна и вряд ли повредит ваши сохраненные данные.
+С учетом сказанного, я НИКАКИМ ОБРАЗОМ не несу ответственности за повреждённые сохранения.
+Эта программа предоставляется КАК ЕСТЬ и БЕЗ ГАРАНТИЙ!
+Если вы согласны с этими условиями, нажмите «Да».</v:String>
     <!--#endregion Main-->
 
     <!--#region Main-->

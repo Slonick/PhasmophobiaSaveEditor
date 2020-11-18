@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using PhasmophobiaSaveEditor.Configuration;
+using PhasmophobiaSaveEditor.Controls.Dialog;
 using PhasmophobiaSaveEditor.Handlers;
 using PhasmophobiaSaveEditor.Logging;
 using PhasmophobiaSaveEditor.Models.Configuration;
@@ -36,6 +37,28 @@ namespace PhasmophobiaSaveEditor
             config.Config.AppearanceOptions.RestoreTo(Current.MainWindow);
 
             Current.MainWindow.Closing += this.OnMainWindowClosing;
+
+            if (!config.Config.GeneralAgreementsIsAccepted)
+            {
+                var isAccepted = MessageDialog.ShowDialog(new DialogParameters
+                {
+                    Button = DialogButton.YesNo,
+                    Content = LocalizationManager.GetLocalizationString("Main.GeneralAgreementsText"),
+                    DialogStartupLocation = WindowStartupLocation.CenterScreen,
+                    Icon = DialogIcon.Question,
+                    Header = LocalizationManager.GetLocalizationString("Main.GeneralAgreements"),
+                });
+
+                if (isAccepted != true)
+                {
+                    Current.Shutdown();
+                    return;
+                }
+
+                config.Config.GeneralAgreementsIsAccepted = true;
+                config.Save();
+            }
+
             Current.MainWindow.Show();
 
             if (Current.MainWindow.DataContext is MainViewModel vm)

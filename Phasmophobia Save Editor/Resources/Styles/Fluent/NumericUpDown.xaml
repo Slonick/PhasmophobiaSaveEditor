@@ -9,8 +9,12 @@
         <ResourceDictionary Source="/Resources/Styles/Fluent/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Geometry x:Key="ArrowUpGeometry">F1 M199.404,199.404z M0,0z M0,135.411L0,135.411 28.285,163.695 99.703,92.277 171.119,163.695 199.404,135.412 99.703,35.709z</Geometry>
-    <Geometry x:Key="ArrowDownGeometry">F1 M199.404,199.404z M0,0z M199.404,63.993L199.404,63.993 171.12,35.709 99.702,107.127 28.284,35.709 0,63.993 99.702,163.695z</Geometry>
+    <Geometry x:Key="ArrowUpGeometry">
+        F1 M32,32z M0,0z M28.903,23.69L28.903,23.69 16.014,10.8 3.125,23.69 1.71,22.275 16.014,7.972 30.318,22.275z
+    </Geometry>
+    <Geometry x:Key="ArrowDownGeometry">
+        F1 M32,32z M0,0z M16.014,23.997L16.014,23.997 1.71,9.693 3.125,8.279 16.014,21.168 28.903,8.279 30.318,9.693z
+    </Geometry>
 
     <Style x:Key="IncreaseDecreaseRepeatButtonBaseStyle"
            BasedOn="{StaticResource RepeatButtonStyle}"
@@ -33,7 +37,7 @@
             <Image.Source>
                 <DrawingImage>
                     <DrawingImage.Drawing>
-                        <DrawingGroup ClipGeometry="M0,0 V199,404 H199,404 V0 H0 Z">
+                        <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
                             <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type RepeatButton}}, Path=Foreground, Mode=OneWay}" Geometry="{StaticResource ArrowDownGeometry}" />
                         </DrawingGroup>
                     </DrawingImage.Drawing>
@@ -48,7 +52,7 @@
             <Image.Source>
                 <DrawingImage>
                     <DrawingImage.Drawing>
-                        <DrawingGroup ClipGeometry="M0,0 V199,404 H199,404 V0 H0 Z">
+                        <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
                             <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type RepeatButton}}, Path=Foreground, Mode=OneWay}" Geometry="{StaticResource ArrowUpGeometry}" />
                         </DrawingGroup>
                     </DrawingImage.Drawing>

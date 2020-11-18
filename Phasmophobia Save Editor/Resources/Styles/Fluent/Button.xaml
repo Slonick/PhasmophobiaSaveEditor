@@ -28,6 +28,7 @@
                     SnapsToDevicePixels="true" />
             <fluent:FluentControl BorderThickness="{TemplateBinding BorderThickness}"
                                   CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                  IsEnabled="{TemplateBinding fluent:FluentAssist.IsEnabled}"
                                   IsSmartClipped="True"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                 <Grid>

@@ -13,6 +13,11 @@
     <v:String x:Key="Main.Saved">Changes saved successfully.</v:String>
     <v:String x:Key="Main.SaveNotExist">Save file not found.</v:String>
     <v:String x:Key="Main.SaveCorrupted">Save file is corrupted.</v:String>
+    <v:String x:Key="Main.GeneralAgreements">Phasmophobia Save Editor - General Agreements</v:String>
+    <v:String x:Key="Main.GeneralAgreementsText" xml:space="preserve">This program is relatively safe and is unlikely to corrupt your gamesave data.
+With that being said, I am by NO MEANS responsible for gamesave corruption.
+This program is provided AS IS and WITHOUT WARRANTY! 
+If you agree to these terms, click &quot;Yes&quot;.</v:String>
     <!--#endregion Main-->
 
     <!--#region Main-->

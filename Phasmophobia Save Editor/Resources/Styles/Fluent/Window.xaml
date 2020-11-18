@@ -471,7 +471,7 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
         <Setter Property="MaxHeight" Value="500" />
-        <Setter Property="MaxWidth" Value="400" />
+        <Setter Property="MaxWidth" Value="600" />
         <Setter Property="MinHeight" Value="28" />
         <Setter Property="MinWidth" Value="110" />
         <Setter Property="Padding" Value="5,2" />
@@ -566,7 +566,10 @@
                                        Source="{Binding RelativeSource={RelativeSource TemplatedParent},
                                                         Path=Parameters.Icon,
                                                         Converter={converters:DialogIconToImageSourceConverter}}"
-                                       Stretch="Uniform" />
+                                       Stretch="Uniform"
+                                       Visibility="{Binding Source,
+                                                            RelativeSource={RelativeSource Self},
+                                                            Converter={converters:NullToVisibilityConverter}}" />
 
                                 <ContentPresenter Grid.Column="1"
                                                   Margin="{TemplateBinding Padding}"

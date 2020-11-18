@@ -10,6 +10,7 @@ using PhasmophobiaSaveEditor.Models;
 using PhasmophobiaSaveEditor.Services;
 using PhasmophobiaSaveEditor.Utils;
 using PhasmophobiaSaveEditor.ViewModels.Base;
+using PhasmophobiaSaveEditor.Views;
 
 namespace PhasmophobiaSaveEditor.ViewModels
 {
@@ -26,7 +27,10 @@ namespace PhasmophobiaSaveEditor.ViewModels
             this.saveService = new SaveService(PathUtil.SaveFile);
             this.SaveCommand = new RelayCommand(this.SaveCommandExecute);
             this.ReloadCommand = new RelayCommand(this.ReloadCommandExecute);
+            this.OpenAboutCommand = new RelayCommand(this.OpenAboutCommandExecute);
         }
+
+        public ICommand OpenAboutCommand { get; }
 
         public ICommand ReloadCommand { get; }
 
@@ -117,6 +121,16 @@ namespace PhasmophobiaSaveEditor.ViewModels
                 new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("GlowstickInventory", StringComparison.InvariantCultureIgnoreCase)), 0, 999, 3),
                 new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("HeadMountedCameraInventory", StringComparison.InvariantCultureIgnoreCase)), 0, 999, 3)
             };
+        }
+
+        private void OpenAboutCommandExecute()
+        {
+            MessageDialog.ShowDialog(new DialogParameters
+            {
+                Content = new AboutView(),
+                DialogStartupLocation = WindowStartupLocation.CenterOwner,
+                Button = DialogButton.OK
+            });
         }
 
         private void ReloadCommandExecute()

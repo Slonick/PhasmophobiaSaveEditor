@@ -14,5 +14,8 @@ namespace PhasmophobiaSaveEditor.Models.Configuration
 
         [DataMember]
         public AppearanceOptions AppearanceOptions { get; set; }
+
+        [DataMember]
+        public bool GeneralAgreementsIsAccepted { get; set; }
     }
 }

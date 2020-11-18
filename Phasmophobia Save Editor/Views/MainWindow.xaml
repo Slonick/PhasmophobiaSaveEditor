@@ -22,83 +22,106 @@
                        WindowStartupLocation="CenterScreen"
                        mc:Ignorable="d">
     <controls:STWindow.AdditionalContent>
-        <controls:DropDownButton Width="30"
-                                 Margin="0"
-                                 VerticalAlignment="Stretch"
-                                 fluent:FluentAssist.CornerRadius="0"
-                                 fluent:FluentAssist.IsEnabled="False"
-                                 BorderThickness="0"
-                                 DropDownIndicatorVisibility="Collapsed"
-                                 DropDownMinHeight="75"
-                                 DropDownMinWidth="300"
-                                 DropDownPlacement="Bottom">
-            <Image Width="16" Height="16">
-                <Image.Source>
-                    <DrawingImage>
-                        <DrawingImage.Drawing>
-                            <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
-                                <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:DropDownButton}}, Path=Foreground, Mode=OneWay}" Geometry="{DynamicResource GearGeometry}" />
-                            </DrawingGroup>
-                        </DrawingImage.Drawing>
-                    </DrawingImage>
-                </Image.Source>
-            </Image>
-            <controls:DropDownButton.DropDownContent>
-                <Border Padding="10"
-                        Background="{DynamicResource MainBrush}"
-                        BorderBrush="{DynamicResource BasicBrush}"
-                        BorderThickness="1">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock FontSize="14"
-                                   FontWeight="SemiBold"
-                                   Foreground="{themes:FluentResource MarkerBrush}"
-                                   Text="{DynamicResource Main.Settings}" />
+        <StackPanel Orientation="Horizontal">
+            <controls:DropDownButton Width="30"
+                                     Margin="0"
+                                     VerticalAlignment="Stretch"
+                                     fluent:FluentAssist.CornerRadius="0"
+                                     fluent:FluentAssist.IsEnabled="False"
+                                     BorderThickness="0"
+                                     DropDownIndicatorVisibility="Collapsed"
+                                     DropDownMinHeight="75"
+                                     DropDownMinWidth="300"
+                                     DropDownPlacement="Bottom">
+                <Image Width="16" Height="16">
+                    <Image.Source>
+                        <DrawingImage>
+                            <DrawingImage.Drawing>
+                                <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:DropDownButton}}, Path=Foreground, Mode=OneWay}" Geometry="{DynamicResource GearGeometry}" />
+                                </DrawingGroup>
+                            </DrawingImage.Drawing>
+                        </DrawingImage>
+                    </Image.Source>
+                </Image>
+                <controls:DropDownButton.DropDownContent>
+                    <Border Padding="10"
+                            Background="{DynamicResource MainBrush}"
+                            BorderBrush="{DynamicResource BasicBrush}"
+                            BorderThickness="1">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="{themes:FluentResource MarkerBrush}"
+                                       Text="{DynamicResource Main.Settings}" />
 
-                        <Separator Margin="0,5,0,0" />
+                            <Separator Margin="0,5,0,0" />
 
-                        <GroupBox Margin="0,5" Header="{DynamicResource Main.Language}">
-                            <UniformGrid Columns="2">
-                                <RadioButton Margin="5" IsChecked="{Binding Path=Language, Converter={converters:EnumToBooleanConverter}, ConverterParameter={x:Static infrastructures:Language.Russian}}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Width="24"
-                                               Height="24"
-                                               Margin="5,0"
-                                               Source="{DynamicResource RussiaDrawingImage}" />
-                                        <TextBlock VerticalAlignment="Center" Text="Русский" />
-                                    </StackPanel>
-                                </RadioButton>
-                                <RadioButton Margin="5" IsChecked="{Binding Path=Language, Converter={converters:EnumToBooleanConverter}, ConverterParameter={x:Static infrastructures:Language.English}}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Width="24"
-                                               Height="24"
-                                               Margin="5,0"
-                                               Source="{DynamicResource UsaDrawingImage}" />
-                                        <TextBlock VerticalAlignment="Center" Text="English" />
-                                    </StackPanel>
-                                </RadioButton>
-                            </UniformGrid>
-                        </GroupBox>
+                            <GroupBox Margin="0,5" Header="{DynamicResource Main.Language}">
+                                <UniformGrid Columns="2">
+                                    <RadioButton Margin="5" IsChecked="{Binding Path=Language, Converter={converters:EnumToBooleanConverter}, ConverterParameter={x:Static infrastructures:Language.Russian}}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="24"
+                                                   Height="24"
+                                                   Margin="5,0"
+                                                   Source="{DynamicResource RussiaDrawingImage}" />
+                                            <TextBlock VerticalAlignment="Center" Text="Русский" />
+                                        </StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Margin="5" IsChecked="{Binding Path=Language, Converter={converters:EnumToBooleanConverter}, ConverterParameter={x:Static infrastructures:Language.English}}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="24"
+                                                   Height="24"
+                                                   Margin="5,0"
+                                                   Source="{DynamicResource UsaDrawingImage}" />
+                                            <TextBlock VerticalAlignment="Center" Text="English" />
+                                        </StackPanel>
+                                    </RadioButton>
+                                </UniformGrid>
+                            </GroupBox>
 
-                        <GroupBox Margin="0,5" Header="{DynamicResource Main.Themes}">
-                            <UniformGrid Columns="2">
-                                <RadioButton Margin="5"
-                                             Content="{DynamicResource Main.Themes.Light}"
-                                             IsChecked="{Binding Path=Theme,
-                                                                 Converter={converters:EnumToBooleanConverter},
-                                                                 ConverterParameter={x:Static infrastructures:Theme.Light}}" />
+                            <GroupBox Margin="0,5" Header="{DynamicResource Main.Themes}">
+                                <UniformGrid Columns="2">
+                                    <RadioButton Margin="5"
+                                                 Content="{DynamicResource Main.Themes.Light}"
+                                                 IsChecked="{Binding Path=Theme,
+                                                                     Converter={converters:EnumToBooleanConverter},
+                                                                     ConverterParameter={x:Static infrastructures:Theme.Light}}" />
 
-                                <RadioButton Margin="5"
-                                             Content="{DynamicResource Main.Themes.Dark}"
-                                             IsChecked="{Binding Path=Theme,
-                                                                 Converter={converters:EnumToBooleanConverter},
-                                                                 ConverterParameter={x:Static infrastructures:Theme.Dark}}" />
+                                    <RadioButton Margin="5"
+                                                 Content="{DynamicResource Main.Themes.Dark}"
+                                                 IsChecked="{Binding Path=Theme,
+                                                                     Converter={converters:EnumToBooleanConverter},
+                                                                     ConverterParameter={x:Static infrastructures:Theme.Dark}}" />
 
-                            </UniformGrid>
-                        </GroupBox>
-                    </StackPanel>
-                </Border>
-            </controls:DropDownButton.DropDownContent>
-        </controls:DropDownButton>
+                                </UniformGrid>
+                            </GroupBox>
+                        </StackPanel>
+                    </Border>
+                </controls:DropDownButton.DropDownContent>
+            </controls:DropDownButton>
+            <Button Margin="0"
+                    VerticalAlignment="Stretch"
+                    fluent:FluentAssist.CornerRadius="0"
+                    fluent:FluentAssist.IsEnabled="False"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding OpenAboutCommand}">
+                <Button.Content>
+                    <Image Width="16" Height="16">
+                        <Image.Source>
+                            <DrawingImage>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground, Mode=OneWay}" Geometry="{DynamicResource HelpGeometry}" />
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+                </Button.Content>
+            </Button>
+        </StackPanel>
     </controls:STWindow.AdditionalContent>
     <Grid>
         <Grid.RowDefinitions>
