@@ -11,13 +11,15 @@ jobs:
     - uses: actions/checkout@v1
       name: Checkout Code
       
-    # disable command workflow processing
     - name: Setup MSBuild Path
       uses: warrenbuckley/Setup-MSBuild@v1
-    # enable workflow command processing
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
        
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
      
     - name: Restore NuGet Packages
       run: nuget restore Phasmophobia Save Editor.sln
