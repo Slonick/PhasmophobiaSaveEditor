@@ -22,10 +22,10 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
      
     - name: Restore NuGet Packages
-      run: nuget restore Phasmophobia Save Editor.sln
+      run: nuget restore "Phasmophobia Save Editor.sln"
  
     - name: Build and Publish App
-      run: msbuild Phasmophobia Save Editor.sln /p:Configuration=Release
+      run: msbuild "Phasmophobia Save Editor.sln" /p:Configuration=Release
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
