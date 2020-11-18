@@ -26,9 +26,9 @@ namespace PhasmophobiaSaveEditor.Utils
                 {
                     var accent = new NativeStructs.AccentPolicy
                     {
-                        AccentState = NativeEnums.AccentState.AccentEnableBlurBehind,
+                        AccentState = window.FluentIsEnabled ? NativeEnums.AccentState.AccentEnableBlurBehind : NativeEnums.AccentState.AccentDisabled,
                         AccentFlags = style == NativeEnums.AccentFlagsType.Window ? 2 : 480,
-                        GradientColor = BitConverter.ToUInt32(new byte[] { brush.Color.R, brush.Color.G, brush.Color.B, 0}, 0)
+                        GradientColor = BitConverter.ToUInt32(new byte[] {brush.Color.R, brush.Color.G, brush.Color.B, 0}, 0)
                     };
 
                     var accentStructSize = Marshal.SizeOf(accent);
@@ -44,7 +44,7 @@ namespace PhasmophobiaSaveEditor.Utils
 
                     var result = NativeMethods.SetWindowCompositionAttribute(handle, ref data);
                     Marshal.FreeHGlobal(accentPtr);
-                    window.Background = new SolidColorBrush(Color.FromArgb((byte) opacity, brush.Color.R, brush.Color.G, brush.Color.B));
+                    window.Background = new SolidColorBrush(Color.FromArgb((byte) (window.FluentIsEnabled ? opacity : 255), brush.Color.R, brush.Color.G, brush.Color.B));
                 }
             }
             catch (DllNotFoundException)

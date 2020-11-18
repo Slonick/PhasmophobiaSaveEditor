@@ -12,14 +12,18 @@ namespace PhasmophobiaSaveEditor.Controls
         public static readonly DependencyProperty FluentBackgroundProperty =
             DependencyProperty.Register(nameof(FluentBackground), typeof(SolidColorBrush), typeof(FluentWindow), new PropertyMetadata(default(SolidColorBrush), OnFluentOpacityChanged));
 
-        static FluentWindow()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(FluentWindow), new FrameworkPropertyMetadata(typeof(FluentWindow)));
-        }
+        public static readonly DependencyProperty FluentIsEnabledProperty =
+            DependencyProperty.Register(nameof(FluentIsEnabled), typeof(bool), typeof(FluentWindow), new PropertyMetadata(true, OnFluentIsEnabledPropertyChanged));
+
 
         public FluentWindow()
         {
             WindowResizer.ApplyToWindow(this);
+        }
+
+        static FluentWindow()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(FluentWindow), new FrameworkPropertyMetadata(typeof(FluentWindow)));
         }
 
         public SolidColorBrush FluentBackground
@@ -28,20 +32,21 @@ namespace PhasmophobiaSaveEditor.Controls
             set => this.SetValue(FluentBackgroundProperty, value);
         }
 
+        public bool FluentIsEnabled
+        {
+            get => (bool) this.GetValue(FluentIsEnabledProperty);
+            set => this.SetValue(FluentIsEnabledProperty, value);
+        }
+
         public uint FluentOpacity
         {
             get => (uint) this.GetValue(FluentOpacityProperty);
             set => this.SetValue(FluentOpacityProperty, value);
         }
 
-        protected override void OnLoaded(Window sender)
-        {
-            AcrylicHelper.EnableBlur(this, this.FluentOpacity);
-        }
-
         private static object CoerceFluentOpacity(DependencyObject d, object baseValue)
         {
-            if (d is FluentWindow window && baseValue is uint opacity && opacity > 255)
+            if (d is FluentWindow && baseValue is uint opacity && opacity > 255)
             {
                 return 255;
             }
@@ -49,11 +54,19 @@ namespace PhasmophobiaSaveEditor.Controls
             return baseValue;
         }
 
+        private static void OnFluentIsEnabledPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is FluentWindow window && window.IsLoaded)
+            {
+                window.UpdateBlur();
+            }
+        }
+
         private static void OnFluentOpacityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is FluentWindow window && window.IsLoaded)
             {
-                AcrylicHelper.EnableBlur(window, window.FluentOpacity);
+                window.UpdateBlur();
             }
         }
 
@@ -65,6 +78,16 @@ namespace PhasmophobiaSaveEditor.Controls
             }
 
             return false;
+        }
+
+        public void UpdateBlur()
+        {
+            AcrylicHelper.EnableBlur(this, this.FluentOpacity);
+        }
+
+        protected override void OnLoaded(Window sender)
+        {
+            this.UpdateBlur();
         }
     }
 }

@@ -193,9 +193,10 @@
             <!--<Trigger Property="HideHeader" Value="False">
                 <Setter TargetName="ContentMask" Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusToOrientedCornerRadiusConverter}, ConverterParameter=bleft bright}" />
             </Trigger>-->
-            <!--<Trigger Property="IsActive" Value="False">
-                <Setter Property="Background" Value="{themes:FluentResource AlternativeBrush}" />
-            </Trigger>-->
+
+            <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="FluentIsEnabled" Value="False" />
+            </DataTrigger>
 
             <Trigger Property="WindowState" Value="Maximized">
                 <Setter Property="fluent:FluentAssist.CornerRadius" Value="0" />
@@ -454,6 +455,11 @@
                             </ScrollViewer>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="FluentIsEnabled" Value="False" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -654,6 +660,11 @@
                             </Border>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="FluentIsEnabled" Value="False" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
