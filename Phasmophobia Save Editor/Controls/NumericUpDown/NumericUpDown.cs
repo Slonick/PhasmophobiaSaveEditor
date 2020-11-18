@@ -131,12 +131,14 @@ namespace PhasmophobiaSaveEditor.Controls
             base.OnApplyTemplate();
             if (this.textBox != null)
             {
+                this.textBox.PreviewTextInput -= this.OnTextBoxOnPreviewTextInput;
                 this.textBox.PreviewMouseWheel -= this.OnTextBoxPreviewMouseWheel;
             }
 
             this.textBox = this.GetTemplateChild("textbox") as TextBox;
             if (this.textBox != null)
             {
+                this.textBox.PreviewTextInput += this.OnTextBoxOnPreviewTextInput;
                 this.textBox.PreviewMouseWheel += this.OnTextBoxPreviewMouseWheel;
             }
         }
@@ -144,6 +146,11 @@ namespace PhasmophobiaSaveEditor.Controls
         private void ChangeValue(int value)
         {
             this.SetCurrentValue(ValueProperty, this.Value + value);
+        }
+
+        private void OnTextBoxOnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !int.TryParse(e.Text, out _);
         }
 
         private void OnTextBoxPreviewMouseWheel(object sender, MouseWheelEventArgs e)
