@@ -15,7 +15,6 @@ namespace PhasmophobiaSaveEditor.ViewModels
 {
     internal class MainViewModel : BaseBindable
     {
-        private readonly string filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\AppData\LocalLow\Kinetic Games\Phasmophobia\saveData.txt";
         private readonly SaveService saveService;
         private List<object> editableSaveProperties;
 
@@ -24,7 +23,7 @@ namespace PhasmophobiaSaveEditor.ViewModels
 
         public MainViewModel()
         {
-            this.saveService = new SaveService(this.filename);
+            this.saveService = new SaveService(PathUtil.SaveFile);
             this.SaveCommand = new RelayCommand(this.SaveCommandExecute);
             this.ReloadCommand = new RelayCommand(this.ReloadCommandExecute);
         }

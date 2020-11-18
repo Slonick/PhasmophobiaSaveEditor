@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using PhasmophobiaSaveEditor.Controls;
+using PhasmophobiaSaveEditor.Logging;
 using PhasmophobiaSaveEditor.Utils;
 
 namespace PhasmophobiaSaveEditor.Handlers
@@ -11,6 +12,8 @@ namespace PhasmophobiaSaveEditor.Handlers
     public class ExceptionHandler
     {
         private static ExceptionHandler current;
+
+        private readonly ILogger logger = LogManager.Default.GetCurrentClassLogger();
         private Exception prevException;
 
         public static ExceptionHandler Current => current ?? (current = new ExceptionHandler());
@@ -41,18 +44,21 @@ namespace PhasmophobiaSaveEditor.Handlers
                 return;
             }
 
+            this.logger.Fatal(exception);
             this.ShowMessage(exception);
         }
 
         private void CurrentOnDispatcherUnhandledException(DispatcherUnhandledExceptionEventArgs args)
         {
             args.Handled = true;
+            this.logger.Fatal(args.Exception);
             this.ShowMessage(args.Exception);
         }
 
         private void DispatcherOnUnhandledException(DispatcherUnhandledExceptionEventArgs args)
         {
             args.Handled = true;
+            this.logger.Fatal(args.Exception);
             this.ShowMessage(args.Exception);
         }
 
@@ -91,6 +97,7 @@ namespace PhasmophobiaSaveEditor.Handlers
         private void TaskSchedulerOnUnobservedTaskException(UnobservedTaskExceptionEventArgs args)
         {
             args.SetObserved();
+            this.logger.Fatal(args.Exception);
             this.ShowMessage(args.Exception);
         }
     }

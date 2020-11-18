@@ -2,7 +2,9 @@
 using System.Windows;
 using PhasmophobiaSaveEditor.Configuration;
 using PhasmophobiaSaveEditor.Handlers;
+using PhasmophobiaSaveEditor.Logging;
 using PhasmophobiaSaveEditor.Models.Configuration;
+using PhasmophobiaSaveEditor.Utils;
 using PhasmophobiaSaveEditor.ViewModels;
 using PhasmophobiaSaveEditor.Views;
 
@@ -18,6 +20,15 @@ namespace PhasmophobiaSaveEditor
         protected override void OnStartup(StartupEventArgs e)
         {
             Current.MainWindow = new MainWindow();
+
+            //Logger
+            var loggerConfig = LoggerConfigBuilder.Create(true, LogLevel.Trace)
+                                                  .WithLayout("[${assembly-name} ${assembly-version}] [${longdate}] [${level}] ${logger:short}: ${message}")
+                                                  .UseDebugLogger()
+                                                  .UseFileLogger(PathUtil.LogFile);
+
+            LogManager.Default.SetConfig(loggerConfig);
+
             ExceptionHandler.Current.RegisterHandler();
 
             var config = new ConfigurationManager<UserConfigOptions>();

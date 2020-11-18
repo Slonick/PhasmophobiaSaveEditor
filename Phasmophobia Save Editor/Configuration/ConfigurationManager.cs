@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using PhasmophobiaSaveEditor.Configuration.Attributes;
+using PhasmophobiaSaveEditor.Logging;
 using PhasmophobiaSaveEditor.Utils;
 
 namespace PhasmophobiaSaveEditor.Configuration
@@ -10,6 +11,7 @@ namespace PhasmophobiaSaveEditor.Configuration
     public class ConfigurationManager<T> : IConfigurationManager<T> where T : new()
     {
         private readonly string filename;
+        private readonly ILogger logger = LogManager.Default.GetCurrentClassLogger();
 
         public ConfigurationManager()
         {
@@ -53,7 +55,7 @@ namespace PhasmophobiaSaveEditor.Configuration
             }
             catch (Exception e)
             {
-                //this.logger.Debug(e, "Attempted to load config [{0}] failed.", this.Filename);
+                this.logger.Debug(e, "Attempted to load config [{0}] failed.", this.Filename);
             }
         }
 
@@ -78,7 +80,7 @@ namespace PhasmophobiaSaveEditor.Configuration
             }
             catch (Exception e)
             {
-                //this.logger.Debug(e, "Attempted to load config [{0}] failed.", this.Filename);
+                this.logger.Debug(e, "Attempted to load config [{0}] failed.", this.Filename);
                 this.Config = new T();
             }
         }
