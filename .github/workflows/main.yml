@@ -30,5 +30,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: output
+        name: Release
         path: Phasmophobia Save Editor\bin\Release
