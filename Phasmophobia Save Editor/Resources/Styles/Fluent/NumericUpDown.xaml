@@ -1,0 +1,253 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:PhasmophobiaSaveEditor.Controls"
+                    xmlns:converters="clr-namespace:PhasmophobiaSaveEditor.Converters"
+                    xmlns:fluent="clr-namespace:PhasmophobiaSaveEditor.Controls.Fluent"
+                    xmlns:themes="clr-namespace:PhasmophobiaSaveEditor.Themes">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Resources/Styles/Fluent/Button.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Geometry x:Key="ArrowUpGeometry">F1 M199.404,199.404z M0,0z M0,135.411L0,135.411 28.285,163.695 99.703,92.277 171.119,163.695 199.404,135.412 99.703,35.709z</Geometry>
+    <Geometry x:Key="ArrowDownGeometry">F1 M199.404,199.404z M0,0z M199.404,63.993L199.404,63.993 171.12,35.709 99.702,107.127 28.284,35.709 0,63.993 99.702,163.695z</Geometry>
+
+    <Style x:Key="IncreaseDecreaseRepeatButtonBaseStyle"
+           BasedOn="{StaticResource RepeatButtonStyle}"
+           TargetType="RepeatButton">
+        <Setter Property="Foreground" Value="{themes:FluentResource IconBrush}" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="IsEnabled" Value="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}, Converter={converters:InvertedBooleanConverter}}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate x:Key="DecreaseRepeatButtonContentTemplate">
+        <Image Width="16"
+               Height="16"
+               Stretch="Uniform">
+            <Image.Source>
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup ClipGeometry="M0,0 V199,404 H199,404 V0 H0 Z">
+                            <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type RepeatButton}}, Path=Foreground, Mode=OneWay}" Geometry="{StaticResource ArrowDownGeometry}" />
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Image.Source>
+        </Image>
+    </DataTemplate>
+    <DataTemplate x:Key="IncreaseRepeatButtonContentTemplate">
+        <Image Width="16"
+               Height="16"
+               Stretch="Uniform">
+            <Image.Source>
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup ClipGeometry="M0,0 V199,404 H199,404 V0 H0 Z">
+                            <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type RepeatButton}}, Path=Foreground, Mode=OneWay}" Geometry="{StaticResource ArrowUpGeometry}" />
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Image.Source>
+        </Image>
+    </DataTemplate>
+    <Style x:Key="DecreaseRepeatButtonStyle"
+           BasedOn="{StaticResource IncreaseDecreaseRepeatButtonBaseStyle}"
+           TargetType="RepeatButton">
+        <Setter Property="ContentTemplate" Value="{StaticResource DecreaseRepeatButtonContentTemplate}" />
+    </Style>
+    <Style x:Key="IncreaseRepeatButtonStyle"
+           BasedOn="{StaticResource IncreaseDecreaseRepeatButtonBaseStyle}"
+           TargetType="RepeatButton">
+        <Setter Property="ContentTemplate" Value="{StaticResource IncreaseRepeatButtonContentTemplate}" />
+    </Style>
+
+    <ControlTemplate x:Key="NumericUpDownControlTemplate" TargetType="{x:Type controls:NumericUpDown}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="Column" Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="BorderVisual"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}" />
+            <TextBox x:Name="textbox"
+                     Padding="{TemplateBinding Padding}"
+                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                     HorizontalContentAlignment="Stretch"
+                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     CaretBrush="{themes:FluentResource MarkerBrush}"
+                     Focusable="{TemplateBinding Focusable}"
+                     FontFamily="{TemplateBinding FontFamily}"
+                     FontSize="{TemplateBinding FontSize}"
+                     Foreground="{TemplateBinding Foreground}"
+                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                     Opacity="{themes:FluentResource InputOpacity}"
+                     TabIndex="{TemplateBinding TabIndex}"
+                     Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                                    Path=Value,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}"
+                     TextAlignment="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                                             Path=HorizontalContentAlignment,
+                                             Converter={converters:HorizontalContentAlignmentToTextAlignmentConverter}}">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Padding="{TemplateBinding Padding}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Background="Transparent"
+                                      BorderBrush="Transparent"
+                                      BorderThickness="0"
+                                      FontSize="{TemplateBinding FontSize}"
+                                      IsTabStop="False"
+                                      VerticalScrollBarVisibility="Auto" />
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <RepeatButton x:Name="increase"
+                          Grid.Column="2"
+                          fluent:FluentAssist.CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                     Path=(fluent:FluentAssist.CornerRadius),
+                                                                     Converter={converters:CornerRadiusConverter},
+                                                                     ConverterParameter=TopBottomRight}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                    Path=BorderThickness}"
+                          Command="{x:Static controls:NumericUpDownCommands.IncreaseCommand}"
+                          Style="{StaticResource IncreaseRepeatButtonStyle}" />
+            <RepeatButton x:Name="decrease"
+                          Grid.Column="1"
+                          fluent:FluentAssist.CornerRadius="0"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                    Path=BorderThickness,
+                                                    Converter={converters:ThicknessToOrientedThicknessConverter},
+                                                    ConverterParameter=LeftTopBottom}"
+                          Command="{x:Static controls:NumericUpDownCommands.DecreaseCommand}"
+                          Style="{StaticResource DecreaseRepeatButtonStyle}" />
+            <Border x:Name="ReadOnlyVisual"
+                    Grid.ColumnSpan="3"
+                    Background="{themes:FluentResource ReadOnlyBackgroundBrush}"
+                    BorderBrush="{themes:FluentResource ReadOnlyBorderBrush}"
+                    BorderThickness="{themes:FluentResource FocusThickness}"
+                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                    IsHitTestVisible="False"
+                    Visibility="Collapsed" />
+            <Border x:Name="FocusVisual"
+                    Grid.ColumnSpan="3"
+                    Background="{x:Null}"
+                    BorderBrush="{TemplateBinding fluent:FluentAssist.FocusBrush}"
+                    BorderThickness="{themes:FluentResource FocusThickness}"
+                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                    IsHitTestVisible="False"
+                    Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="ShowTextBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{themes:FluentResource MarkerMouseOverBrush}" />
+                <Setter TargetName="textbox" Property="Opacity" Value="1" />
+                <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsReadOnly" Value="True" />
+                    <Condition Property="ShowTextBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter TargetName="textbox" Property="Opacity" Value="{themes:FluentResource ReadOnlyOpacity}" />
+                <Setter TargetName="ReadOnlyVisual" Property="Visibility" Value="Visible" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsReadOnly" Value="True" />
+                    <Condition Property="ShowButtons" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="decrease" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" />
+                <Setter TargetName="increase" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" />
+                <Setter TargetName="decrease" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+                <Setter TargetName="increase" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ShowTextBox" Value="True" />
+                    <Condition Property="ShowButtons" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="BorderVisual" Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" />
+                <Setter TargetName="BorderVisual" Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" />
+            </MultiTrigger>
+            <Trigger Property="ShowTextBox" Value="False">
+                <Setter TargetName="textbox" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="decrease" Property="fluent:FluentAssist.CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" />
+                <Setter TargetName="BorderVisual" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="Column" Property="Width" Value="0" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ShowTextBox" Value="False" />
+                    <Condition Property="IsReadOnly" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="BorderVisual" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="decrease" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" />
+                <Setter TargetName="increase" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopRightBottom}" />
+                <Setter TargetName="decrease" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+                <Setter TargetName="increase" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+            </MultiTrigger>
+            <Trigger Property="ShowButtons" Value="False">
+                <Setter TargetName="increase" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="decrease" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsKeyboardFocusWithin" Value="True" />
+                    <Condition Property="ShowTextBox" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{themes:FluentResource MarkerMouseOverBrush}" />
+                <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                <Setter TargetName="textbox" Property="Opacity" Value="1" />
+                <Setter TargetName="FocusVisual" Property="Visibility" Value="Visible" />
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="textbox" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+                <Setter TargetName="BorderVisual" Property="Background" Value="{themes:FluentResource PrimaryBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="NumericUpDownStyle" TargetType="controls:NumericUpDown">
+        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource PrimaryMouseOverBrush}" />
+        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="{themes:FluentResource CornerRadius}" />
+        <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
+        <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="Background" Value="{themes:FluentResource PrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="5,6" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template" Value="{StaticResource NumericUpDownControlTemplate}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTooltipTemplate}" />
+    </Style>
+    <Style BasedOn="{StaticResource NumericUpDownStyle}" TargetType="controls:NumericUpDown" />
+
+</ResourceDictionary>

@@ -1,0 +1,396 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:navigation="clr-namespace:PhasmophobiaSaveEditor.Controls.Navigation"
+                    xmlns:themes="clr-namespace:PhasmophobiaSaveEditor.Themes"
+                    xmlns:attachedProperties="clr-namespace:PhasmophobiaSaveEditor.AttachedProperties"
+                    xmlns:fluent="clr-namespace:PhasmophobiaSaveEditor.Controls.Fluent"
+                    xmlns:converters="clr-namespace:PhasmophobiaSaveEditor.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Resources/Styles/Fluent/Button.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <GeometryGroup x:Key="MenuGeometry">
+        <RectangleGeometry Rect="4,14,24,2" />
+        <RectangleGeometry Rect="4,6,24,2" />
+        <RectangleGeometry Rect="4,22,24,2" />
+    </GeometryGroup>
+
+    <GeometryGroup x:Key="MoreGeometry">
+        <EllipseGeometry Center="16,16"
+                         RadiusX="3"
+                         RadiusY="3" />
+        <EllipseGeometry Center="26,16"
+                         RadiusX="3"
+                         RadiusY="3" />
+        <EllipseGeometry Center="6,16"
+                         RadiusX="3"
+                         RadiusY="3" />
+    </GeometryGroup>
+
+    <Style x:Key="MenuToggleButton"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="0" />
+    </Style>
+
+    <Style TargetType="{x:Type navigation:NavigationViewBarItem}">
+        <Setter Property="Background" Value="{Binding Source={x:Static themes:FluentPalette.Palette}, Path=AlternativeColor, Converter={converters:ColorToBrushConverter}, ConverterParameter=255}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type navigation:NavigationViewBarItem}">
+                    <Grid>
+                        <Border x:Name="BorderVisual"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                SnapsToDevicePixels="true" />
+                        <fluent:FluentControl BorderThickness="{TemplateBinding BorderThickness}"
+                                              CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                              IsSmartClipped="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                Path=Title}">
+                            <ContentPresenter x:Name="Content"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Focusable="False"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              Visibility="{TemplateBinding attachedProperties:IsBusyProperty.Value,
+                                                                           Converter={converters:BooleanToVisibilityConverter},
+                                                                           ConverterParameter=True}" />
+                        </fluent:FluentControl>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                            <Setter TargetName="BorderVisual" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.PressedBrush), Mode=OneWay}" />
+                            <Setter TargetName="BorderVisual" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.PressedBrush), Mode=OneWay}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource ResourceKey=AlternativeBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=AlternativeBrush}" />
+                            <Setter TargetName="Content" Property="Opacity" Value="{DynamicResource ResourceKey=DisabledOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Width" Value="40" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="0" />
+        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
+        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource MouseOverBrush}" />
+        <Setter Property="fluent:FluentAssist.PressedBrush" Value="{themes:FluentResource PressedBrush}" />
+    </Style>
+
+    <Style TargetType="{x:Type navigation:NavigationViewItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type navigation:NavigationViewItem}">
+                    <fluent:FluentControl>
+                        <Border x:Name="PART_Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                ToolTip="{TemplateBinding Title}">
+                            <Grid SnapsToDevicePixels="True" UseLayoutRounding="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type navigation:NavigationView}}, Path=CompactPaneWidth}" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter Grid.Column="0"
+                                                  Width="20"
+                                                  Height="20"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  ContentSource="Icon" />
+
+                                <Rectangle x:Name="PART_HighLight"
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="2"
+                                           Width="5"
+                                           Height="5"
+                                           Margin="5"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Top"
+                                           Fill="{themes:FluentResource ValidationBrush}"
+                                           RadiusX="5"
+                                           RadiusY="5"
+                                           Visibility="{Binding IsHighLighted,
+                                                                RelativeSource={RelativeSource TemplatedParent},
+                                                                Converter={converters:BooleanToVisibilityConverter}}" />
+
+                                <TextBlock Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Text="{TemplateBinding Title}" />
+
+                                <Border x:Name="PART_SelectedIndicator"
+                                        Grid.Column="0"
+                                        Width="5"
+                                        Margin="0,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Stretch"
+                                        Background="{themes:FluentResource AccentBrush}"
+                                        Visibility="Collapsed" />
+                            </Grid>
+                        </Border>
+
+                    </fluent:FluentControl>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsOption" Value="True">
+                            <Setter Property="DockPanel.Dock" Value="Bottom" />
+                        </Trigger>
+                        <Trigger Property="IsOption" Value="False">
+                            <Setter Property="DockPanel.Dock" Value="Top" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type navigation:NavigationView}}, Path=IsPaneOpen}" Value="True">
+                            <Setter TargetName="PART_Border" Property="ToolTip" Value="{x:Null}" />
+                        </DataTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="False" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{themes:FluentResource MouseOverBrush}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <!--<Setter Property="Background" Value="{themes:FluentResource AccentBrush}" />
+                            <Setter Property="Foreground" Value="{themes:FluentResource MarkerInvertedBrush}" />-->
+                            <Setter TargetName="PART_SelectedIndicator" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <!--<Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{themes:FluentResource StrongBrush}" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{themes:FluentResource SemiBasicBrush}" />
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="fluent:FluentAssist.CheckedBrush" Value="{themes:FluentResource AccentBrush}" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="{themes:FluentResource CornerRadius}" />
+        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
+        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource MouseOverBrush}" />
+        <Setter Property="fluent:FluentAssist.PressedBrush" Value="{themes:FluentResource PressedBrush}" />
+    </Style>
+
+    <Style TargetType="{x:Type navigation:NavigationView}">
+        <Setter Property="Background" Value="{themes:FluentResource MainBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <navigation:NavigationDockPanel VerticalAlignment="Stretch" LastChildFill="False" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type navigation:NavigationView}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <fluent:AcrylicPanel x:Name="PART_AcrylicPaneTop"
+                                                 Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 Padding="0,0,0,0"
+                                                 Panel.ZIndex="2"
+                                                 Background="{Binding Source={x:Static themes:FluentPalette.Palette},
+                                                                      Path=AlternativeColor,
+                                                                      Converter={converters:ColorToBrushConverter},
+                                                                      ConverterParameter=255}"
+                                                 IsEnableAcrylic="False"
+                                                 NoiseOpacity="0"
+                                                 Target="{Binding ElementName=ContentBorder}"
+                                                 TintOpacity="0">
+                                <Button Width="{TemplateBinding CompactPaneWidth}"
+                                        Height="{TemplateBinding CompactPaneWidth}"
+                                        Command="{x:Static navigation:NavigationCommands.ToggleCommand}"
+                                        Style="{StaticResource MenuToggleButton}">
+                                    <Image Width="20" Height="20">
+                                        <Image.Source>
+                                            <DrawingImage>
+                                                <DrawingImage.Drawing>
+                                                    <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                                                        <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="{StaticResource MenuGeometry}" />
+                                                    </DrawingGroup>
+                                                </DrawingImage.Drawing>
+                                            </DrawingImage>
+                                        </Image.Source>
+                                    </Image>
+                                </Button>
+                            </fluent:AcrylicPanel>
+
+                            <Border Grid.Row="0"
+                                    Grid.Column="1"
+                                    MinHeight="30"
+                                    Background="{Binding Source={x:Static themes:FluentPalette.Palette},
+                                                         Path=AlternativeColor,
+                                                         Converter={converters:ColorToBrushConverter},
+                                                         ConverterParameter=255}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ItemsControl HorizontalAlignment="Right"
+                                                  VerticalAlignment="Stretch"
+                                                  HorizontalContentAlignment="Stretch"
+                                                  VerticalContentAlignment="Stretch"
+                                                  ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                        Path=BarItems}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+
+                                    <Button Grid.Column="1"
+                                            Width="40"
+                                            Height="40"
+                                            VerticalAlignment="Stretch"
+                                            Style="{StaticResource MenuToggleButton}"
+                                            Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                 Path=ShowMoreButton,
+                                                                 Converter={converters:BooleanToVisibilityConverter}}">
+                                        <Image Width="20" Height="20">
+                                            <Image.Source>
+                                                <DrawingImage>
+                                                    <DrawingImage.Drawing>
+                                                        <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="{StaticResource MoreGeometry}" />
+                                                        </DrawingGroup>
+                                                    </DrawingImage.Drawing>
+                                                </DrawingImage>
+                                            </Image.Source>
+                                        </Image>
+                                    </Button>
+                                </Grid>
+                            </Border>
+
+                            <Rectangle Name="PART_DismissPaneOverlay"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       Panel.ZIndex="2"
+                                       Fill="Transparent"
+                                       Visibility="Collapsed" />
+
+
+                            <Border x:Name="ContentBorder"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="{TemplateBinding Padding}"
+                                    Panel.ZIndex="1"
+                                    Background="{themes:FluentResource PrimaryBackgroundBrush}">
+                                <AdornerDecorator>
+                                    <controls:TransitionContentControl x:Name="PART_Content"
+                                                                       HorizontalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                       Content="{Binding SelectedItem.Content,
+                                                                                         RelativeSource={RelativeSource TemplatedParent}}" />
+                                </AdornerDecorator>
+                            </Border>
+
+                            <fluent:AcrylicPanel x:Name="PART_AcrylicPaneRoot"
+                                                 Grid.Row="1"
+                                                 Grid.Column="0"
+                                                 Padding="0,0,0,0"
+                                                 Panel.ZIndex="2"
+                                                 Background="{Binding Source={x:Static themes:FluentPalette.Palette},
+                                                                      Path=AlternativeColor,
+                                                                      Converter={converters:ColorToBrushConverter},
+                                                                      ConverterParameter=255}"
+                                                 IsEnableAcrylic="False"
+                                                 NoiseOpacity="0"
+                                                 Target="{Binding ElementName=ContentBorder}"
+                                                 TintOpacity="0">
+                                <Border x:Name="PART_PaneRoot"
+                                        Width="{TemplateBinding PaneWidth}"
+                                        HorizontalAlignment="Left"
+                                        Background="{TemplateBinding Background}"
+                                        BorderThickness="0">
+                                    <ItemsPresenter />
+                                </Border>
+                            </fluent:AcrylicPanel>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPaneOpen" Value="True" />
+                                <Condition Property="DisplayMode" Value="Compact" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_AcrylicPaneRoot" Property="IsEnableAcrylic" Value="True" />
+                            <Setter TargetName="PART_AcrylicPaneTop" Property="IsEnableAcrylic" Value="True" />
+                            <Setter TargetName="PART_DismissPaneOverlay" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPaneOpen" Value="True" />
+                                <Condition Property="DisplayMode" Value="Minimal" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_AcrylicPaneRoot" Property="IsEnableAcrylic" Value="True" />
+                            <Setter TargetName="PART_AcrylicPaneTop" Property="IsEnableAcrylic" Value="True" />
+                            <Setter TargetName="PART_DismissPaneOverlay" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                        <Trigger Property="DisplayMode" Value="Compact">
+                            <Setter TargetName="ContentBorder" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="ContentBorder" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="ContentBorder" Property="Margin" Value="{Binding Path=CompactPaneWidth, ConverterParameter=Left, RelativeSource={RelativeSource TemplatedParent}, Converter={controls:DoubleToThicknessConverter}}" />
+                        </Trigger>
+                        <Trigger Property="DisplayMode" Value="Minimal">
+                            <Setter TargetName="ContentBorder" Property="BorderThickness" Value="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="ContentBorder" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="ContentBorder" Property="Grid.ColumnSpan" Value="2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+
+</ResourceDictionary>

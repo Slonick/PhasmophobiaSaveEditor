@@ -1,0 +1,82 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <!--#region Main-->
+    <v:String x:Key="Main.Settings">Настройки</v:String>
+    <v:String x:Key="Main.Language">Язык</v:String>
+    <v:String x:Key="Main.Themes">Тема</v:String>
+    <v:String x:Key="Main.Themes.Dark">Тёмная</v:String>
+    <v:String x:Key="Main.Themes.Light">Светлая</v:String>
+    <v:String x:Key="Main.Notifications">Уведомления</v:String>
+    <v:String x:Key="Main.Reload">Перезагрузить</v:String>
+    <v:String x:Key="Main.Save">Сохранить</v:String>
+    <v:String x:Key="Main.Saved">Изменения успешно сохранены.</v:String>
+    <v:String x:Key="Main.SaveNotExist">Файл сохранения не найден.</v:String>
+    <v:String x:Key="Main.SaveCorrupted">Файл сохранения повреждён.</v:String>
+    <!--#endregion Main-->
+
+    <!--#region Main-->
+    <v:String x:Key="GhostType">Призрак</v:String>
+    <v:String x:Key="myTotalExp">Опыт</v:String>
+    <v:String x:Key="PlayersMoney">Деньги</v:String>
+    <v:String x:Key="EMFReaderInventory">Детектор ЭМП</v:String>
+    <v:String x:Key="FlashlightInventory">Фонарик</v:String>
+    <v:String x:Key="CameraInventory">Фотокамера</v:String>
+    <v:String x:Key="LighterInventory">Зажигалка</v:String>
+    <v:String x:Key="CandleInventory">Свеча</v:String>
+    <v:String x:Key="UVFlashlightInventory">УФ-фонарик</v:String>
+    <v:String x:Key="CrucifixInventory">Распятие</v:String>
+    <v:String x:Key="DSLRCameraInventory">Видеокамера</v:String>
+    <v:String x:Key="EVPRecorderInventory">Радиоприёмник</v:String>
+    <v:String x:Key="SaltInventory">Соль</v:String>
+    <v:String x:Key="SageInventory">Благовоние</v:String>
+    <v:String x:Key="TripodInventory">Штатив</v:String>
+    <v:String x:Key="StrongFlashlightInventory">Мощный фонарь</v:String>
+    <v:String x:Key="MotionSensorInventory">Датчик движения</v:String>
+    <v:String x:Key="SoundSensorInventory">Датчик звука</v:String>
+    <v:String x:Key="SanityPillsInventory">Успокоительное</v:String>
+    <v:String x:Key="ThermometerInventory">Термометр</v:String>
+    <v:String x:Key="GhostWritingBookInventory">Блокнот</v:String>
+    <v:String x:Key="IRLightSensorInventory">Инфракрасный датчик</v:String>
+    <v:String x:Key="ParabolicMicrophoneInventory">Направленный микрофон</v:String>
+    <v:String x:Key="GlowstickInventory">Неоновая палочка</v:String>
+    <v:String x:Key="HeadMountedCameraInventory">Камера с креплением на голову</v:String>
+    <!--#endregion Main-->
+
+    <!--#region About-->
+    <v:String x:Key="About">О программе</v:String>
+    <v:String x:Key="About.Version">Версия</v:String>
+    <v:String x:Key="About.Build">Сборка</v:String>
+    <v:String x:Key="About.CheckForUpdate">Проверить обновление</v:String>
+    <v:String x:Key="About.ChangeLog">Список изменений</v:String>
+    <!--#endregion About-->
+
+    <!--#region Buttons-->
+    <v:String x:Key="Buttons.Add">Добавить</v:String>
+    <v:String x:Key="Buttons.Apply">Применить</v:String>
+    <v:String x:Key="Buttons.Save">Сохранить</v:String>
+    <v:String x:Key="Buttons.Cancel">Отмена</v:String>
+    <v:String x:Key="Buttons.Open">Открыть</v:String>
+    <v:String x:Key="Buttons.Import">Импорт</v:String>
+    <!--#endregion Buttons-->
+
+    <!--#region Unhandled Exception-->
+    <v:String x:Key="UnhandledException.Message">Произошло необработанное исключение в приложении. Если вы нажмете «Продолжить», приложение проигнорирует эту ошибку и попытается продолжить. Если вы нажмете «Выйти», приложение будет немедленно закрыто.</v:String>
+    <v:String x:Key="UnhandledException.Continue">_Продолжить</v:String>
+    <v:String x:Key="UnhandledException.Quit">_Выйти</v:String>
+    <v:String x:Key="UnhandledException.Details">По_дробности</v:String>
+    <!--#endregion Unhandled Exception-->
+
+    <!--#region ApplicationCommands-->
+    <v:String x:Key="ApplicationCommands.Cut">Вырезать</v:String>
+    <v:String x:Key="ApplicationCommands.Copy">Копировать</v:String>
+    <v:String x:Key="ApplicationCommands.Paste">Вставить</v:String>
+    <!--#endregion-->
+
+    <!--#region MessageDialog-->
+    <v:String x:Key="MessageDialog.Cancel">Отмена</v:String>
+    <v:String x:Key="MessageDialog.Yes">Да</v:String>
+    <v:String x:Key="MessageDialog.No">Нет</v:String>
+    <!--#endregion MessageDialog-->
+</ResourceDictionary>

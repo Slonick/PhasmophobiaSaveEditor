@@ -1,0 +1,284 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fluent="clr-namespace:PhasmophobiaSaveEditor.Controls.Fluent"
+                    xmlns:themes="clr-namespace:PhasmophobiaSaveEditor.Themes">
+
+    <Style TargetType="{x:Type ContextMenu}">
+        <Setter Property="Background" Value="{themes:FluentResource AlternativeBrush}" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
+        <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="HasDropShadow" Value="True" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <Border x:Name="EffectBorder">
+                        <Border x:Name="Border"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasDropShadow" Value="true">
+                            <Setter TargetName="EffectBorder" Property="BorderThickness" Value="5" />
+                            <Setter TargetName="EffectBorder" Property="Effect" Value="{DynamicResource ShadowDepth.Depth2}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="0" />
+    </Style>
+
+    <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator">
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Rectangle Margin="{TemplateBinding Padding}"
+                               HorizontalAlignment="Stretch"
+                               Fill="{themes:FluentResource BasicBrush}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="MenuItem">
+        <Border Name="Border" Padding="{TemplateBinding Padding}">
+            <Grid>
+                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True" />
+                <Popup Name="PART_Popup"
+                       AllowsTransparency="True"
+                       Focusable="False"
+                       IsOpen="{TemplateBinding IsSubmenuOpen}"
+                       PopupAnimation="Fade">
+                    <Grid Margin="3,0,3,3">
+                        <Border Name="SubmenuBorder"
+                                Background="{themes:FluentResource AlternativeBrush}"
+                                BorderBrush="{themes:FluentResource BasicBrush}"
+                                BorderThickness="0">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </Border>
+                    </Grid>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSuspendingPopupAnimation" Value="true">
+                <Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{themes:FluentResource MouseOverBrush}" />
+                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Border" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="MenuItem">
+        <Border Name="Border" Padding="{TemplateBinding Padding}">
+            <Grid>
+                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{themes:FluentResource MouseOverBrush}" />
+                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Border" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="MenuItem">
+        <Border Name="Border"
+                Padding="{TemplateBinding Padding}"
+                Background="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="28" SharedSizeGroup="Icon" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut" />
+                    <ColumnDefinition Width="13" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon"
+                                  Grid.Column="0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding Icon}" />
+
+                <Border Name="Check"
+                        Grid.Column="0"
+                        Visibility="Collapsed">
+                    <Path Name="CheckMark"
+                          Width="16"
+                          Height="16"
+                          Data="M 0 0 L 7 7 M 0 7 L 7 0"
+                          SnapsToDevicePixels="False"
+                          Stretch="Uniform"
+                          Stroke="{themes:FluentResource IconBrush}"
+                          StrokeThickness="2"
+                          Visibility="Hidden" />
+                </Border>
+
+                <ContentPresenter Name="HeaderHost"
+                                  Grid.Column="1"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True" />
+
+                <ContentPresenter Name="InputGestureHost"
+                                  Grid.Column="2"
+                                  Margin="5,6"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Content="{TemplateBinding InputGestureText}" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="true">
+                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsCheckable" Value="true">
+                <Setter TargetName="Check" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Icon" Property="Visibility" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{themes:FluentResource MouseOverBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter TargetName="Border" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="MenuItem">
+        <Border Name="Border"
+                Padding="{TemplateBinding Padding}"
+                Background="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="28" SharedSizeGroup="Icon" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut" />
+                    <ColumnDefinition Width="13" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon"
+                                  Grid.Column="0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding Icon}" />
+                <ContentPresenter Name="HeaderHost"
+                                  Grid.Column="1"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True" />
+                <ContentPresenter Name="InputGestureHost"
+                                  Grid.Column="2"
+                                  Margin="5,6"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Content="{TemplateBinding InputGestureText}" />
+
+                <Path x:Name="SubMenuPath"
+                      Grid.Column="3"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Data="M 0 0 L 0 7 L 4 3.5 Z"
+                      Fill="{DynamicResource StrongBrush}" />
+                <Popup Name="Popup"
+                       Grid.Column="0"
+                       AllowsTransparency="True"
+                       Focusable="False"
+                       IsOpen="{TemplateBinding IsSubmenuOpen}"
+                       Placement="Right"
+                       PlacementTarget="{Binding ElementName=Border}"
+                       PopupAnimation="Scroll">
+                    <Border x:Name="EffectBorder" Effect="{DynamicResource ShadowDepth.Depth2}">
+                        <Border Name="SubmenuBorder"
+                                Background="{themes:FluentResource AlternativeBrush}"
+                                BorderBrush="{themes:FluentResource BasicBrush}"
+                                BorderThickness="0">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </Border>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{themes:FluentResource MouseOverBrush}" />
+                <Setter TargetName="SubMenuPath" Property="Fill" Value="{themes:FluentResource MarkerBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter TargetName="Border" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{x:Type MenuItem}" TargetType="MenuItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource MainBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
+        <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Padding" Value="5,6" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+                <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.TopLevelItemTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template" Value="{DynamicResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

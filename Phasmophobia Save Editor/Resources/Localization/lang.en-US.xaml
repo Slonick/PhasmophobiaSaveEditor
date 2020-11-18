@@ -1,0 +1,81 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <!--#region Main-->
+    <v:String x:Key="Main.Settings">Settings</v:String>
+    <v:String x:Key="Main.Language">Language</v:String>
+    <v:String x:Key="Main.Themes">Theme</v:String>
+    <v:String x:Key="Main.Themes.Dark">Dark</v:String>
+    <v:String x:Key="Main.Themes.Light">Light</v:String>
+    <v:String x:Key="Main.Reload">Reload</v:String>
+    <v:String x:Key="Main.Save">Save</v:String>
+    <v:String x:Key="Main.Saved">Changes saved successfully.</v:String>
+    <v:String x:Key="Main.SaveNotExist">Save file not found.</v:String>
+    <v:String x:Key="Main.SaveCorrupted">Save file is corrupted.</v:String>
+    <!--#endregion Main-->
+
+    <!--#region Main-->
+    <v:String x:Key="GhostType">Ghost</v:String>
+    <v:String x:Key="myTotalExp">Experience</v:String>
+    <v:String x:Key="PlayersMoney">Money</v:String>
+    <v:String x:Key="EMFReaderInventory">EMF Readers</v:String>
+    <v:String x:Key="FlashlightInventory">Flashlights</v:String>
+    <v:String x:Key="CameraInventory">Photo Cameras</v:String>
+    <v:String x:Key="LighterInventory">Lighters</v:String>
+    <v:String x:Key="CandleInventory">Candles</v:String>
+    <v:String x:Key="UVFlashlightInventory">UV Lights</v:String>
+    <v:String x:Key="CrucifixInventory">Crucifixes</v:String>
+    <v:String x:Key="DSLRCameraInventory">Video Cameras</v:String>
+    <v:String x:Key="EVPRecorderInventory">Spirit Boxes</v:String>
+    <v:String x:Key="SaltInventory">Salt</v:String>
+    <v:String x:Key="SageInventory">Smudge Sticks</v:String>
+    <v:String x:Key="TripodInventory">Tripods</v:String>
+    <v:String x:Key="StrongFlashlightInventory">Strong Flashlights</v:String>
+    <v:String x:Key="MotionSensorInventory">Motion Sensors</v:String>
+    <v:String x:Key="SoundSensorInventory">Sound Sensors</v:String>
+    <v:String x:Key="SanityPillsInventory">Sanity Pills</v:String>
+    <v:String x:Key="ThermometerInventory">Thermometers</v:String>
+    <v:String x:Key="GhostWritingBookInventory">Ghost Writing Books</v:String>
+    <v:String x:Key="IRLightSensorInventory">IR Light Sensors</v:String>
+    <v:String x:Key="ParabolicMicrophoneInventory">Parabolic Microphones</v:String>
+    <v:String x:Key="GlowstickInventory">Glowsticks</v:String>
+    <v:String x:Key="HeadMountedCameraInventory">Head Mounted Cameras</v:String>
+    <!--#endregion Main-->
+
+    <!--#region About-->
+    <v:String x:Key="About">About</v:String>
+    <v:String x:Key="About.Version">Version</v:String>
+    <v:String x:Key="About.Build">Build</v:String>
+    <v:String x:Key="About.CheckForUpdate">Check for update</v:String>
+    <v:String x:Key="About.ChangeLog">Change Log</v:String>
+    <!--#endregion About-->
+
+    <!--#region Buttons-->
+    <v:String x:Key="Buttons.Add">Add</v:String>
+    <v:String x:Key="Buttons.Apply">Apply</v:String>
+    <v:String x:Key="Buttons.Save">Save</v:String>
+    <v:String x:Key="Buttons.Cancel">Cancel</v:String>
+    <v:String x:Key="Buttons.Open">Open</v:String>
+    <v:String x:Key="Buttons.Import">Import</v:String>
+    <!--#endregion Buttons-->
+
+    <!--#region Unhandled Exception-->
+    <v:String x:Key="UnhandledException.Message">Unhandled exception has occurred in application. If you click Continue, the application will ignore this error and attempt to continue. If you click Quit, the application will close immediately.</v:String>
+    <v:String x:Key="UnhandledException.Continue">_Continue</v:String>
+    <v:String x:Key="UnhandledException.Quit">_Quit</v:String>
+    <v:String x:Key="UnhandledException.Details">_Details</v:String>
+    <!--#endregion Unhandled Exception-->
+
+    <!--#region ApplicationCommands-->
+    <v:String x:Key="ApplicationCommands.Cut">Cut</v:String>
+    <v:String x:Key="ApplicationCommands.Copy">Copy</v:String>
+    <v:String x:Key="ApplicationCommands.Paste">Paste</v:String>
+    <!--#endregion-->
+
+    <!--#region MessageDialog-->
+    <v:String x:Key="MessageDialog.Cancel">Cancel</v:String>
+    <v:String x:Key="MessageDialog.Yes">Yes</v:String>
+    <v:String x:Key="MessageDialog.No">No</v:String>
+    <!--#endregion MessageDialog-->
+</ResourceDictionary>

@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fluent="clr-namespace:PhasmophobiaSaveEditor.Themes"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <ResourceDictionary.MergedDictionaries>
+        <fluent:FluentResourceDictionary />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/AcrylicPanel.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/Button.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/CommonControls.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/ContextMenu.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/DropDownButton.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/FluentControl.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/GroupBox.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/NumericUpDown.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/RadioButton.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/ScrollViewer.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/Separator.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/TextBox.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/ToggleButton.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/ToolTip.xaml" />
+        <ResourceDictionary Source="/Resources/Styles/Fluent/Window.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Color x:Key="ShadowColor">#AA000000</Color>
+    <DropShadowEffect x:Key="ShadowDepth.Depth0"
+                      po:Freeze="True"
+                      BlurRadius="0.01"
+                      Direction="-90"
+                      Opacity="0.01"
+                      RenderingBias="Performance"
+                      ShadowDepth="0.01"
+                      Color="{StaticResource ShadowColor}" />
+    <DropShadowEffect x:Key="ShadowDepth.Depth1"
+                      po:Freeze="True"
+                      BlurRadius="5"
+                      Direction="-90"
+                      Opacity="0.25"
+                      RenderingBias="Performance"
+                      ShadowDepth="1"
+                      Color="{StaticResource ShadowColor}" />
+    <DropShadowEffect x:Key="ShadowDepth.Depth2"
+                      po:Freeze="True"
+                      BlurRadius="8"
+                      Direction="-90"
+                      Opacity="0.25"
+                      RenderingBias="Performance"
+                      ShadowDepth="2"
+                      Color="{StaticResource ShadowColor}" />
+    <DropShadowEffect x:Key="ShadowDepth.Depth3"
+                      po:Freeze="True"
+                      BlurRadius="18"
+                      Direction="-90"
+                      Opacity="0.25"
+                      RenderingBias="Performance"
+                      ShadowDepth="6"
+                      Color="{StaticResource ShadowColor}" />
+    <DropShadowEffect x:Key="ShadowDepth.Depth4"
+                      po:Freeze="True"
+                      BlurRadius="20"
+                      Direction="-90"
+                      Opacity="0.4"
+                      RenderingBias="Performance"
+                      ShadowDepth="8"
+                      Color="{StaticResource ShadowColor}" />
+    <DropShadowEffect x:Key="ShadowDepth.Depth5"
+                      po:Freeze="True"
+                      BlurRadius="30"
+                      Direction="-90"
+                      Opacity="0.4"
+                      RenderingBias="Performance"
+                      ShadowDepth="12"
+                      Color="{StaticResource ShadowColor}" />
+</ResourceDictionary>

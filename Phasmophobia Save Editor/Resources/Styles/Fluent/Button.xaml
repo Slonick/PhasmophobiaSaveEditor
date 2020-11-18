@@ -1,0 +1,286 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ap="clr-namespace:PhasmophobiaSaveEditor.AttachedProperties"
+                    xmlns:converters="clr-namespace:PhasmophobiaSaveEditor.Converters"
+                    xmlns:fluent="clr-namespace:PhasmophobiaSaveEditor.Controls.Fluent"
+                    xmlns:themes="clr-namespace:PhasmophobiaSaveEditor.Themes">
+
+    <Storyboard x:Key="Spin">
+        <DoubleAnimation RepeatBehavior="Forever"
+                         Storyboard.TargetName="PART_IsBusyIndicator"
+                         Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                         From="0"
+                         To="360"
+                         Duration="0:0:2" />
+    </Storyboard>
+
+    <Geometry x:Key="SpinnerGeometry">
+        F1 M512,512z M0,0z M288,32C288,49.673 273.673,64 256,64 238.327,64 224,49.673 224,32 224,14.327 238.327,0 256,0 273.673,0 288,14.327 288,32z M256,448C238.327,448 224,462.327 224,480 224,497.673 238.327,512 256,512 273.673,512 288,497.673 288,480 288,462.327 273.673,448 256,448z M512,256C512,238.327 497.673,224 480,224 462.327,224 448,238.327 448,256 448,273.673 462.327,288 480,288 497.673,288 512,273.673 512,256z M64,256C64,238.327 49.673,224 32,224 14.327,224 0,238.327 0,256 0,273.673 14.327,288 32,288 49.673,288 64,273.673 64,256z M97.608,382.392C79.935,382.392 65.608,396.719 65.608,414.392 65.608,432.065 79.935,446.392 97.608,446.392 115.281,446.392 129.608,432.065 129.608,414.392 129.608,396.719 115.281,382.392 97.608,382.392z M414.392,382.392C396.719,382.392 382.392,396.719 382.392,414.392 382.392,432.065 396.719,446.392 414.392,446.392 432.065,446.392 446.392,432.065 446.392,414.392 446.392,396.719 432.065,382.392 414.392,382.392z M97.608,65.608C79.935,65.608 65.608,79.935 65.608,97.608 65.608,115.281 79.935,129.608 97.608,129.608 115.281,129.608 129.608,115.281 129.608,97.608 129.608,79.935 115.281,65.608 97.608,65.608z
+    </Geometry>
+
+    <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+        <Grid>
+            <Border x:Name="BorderVisual"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                    SnapsToDevicePixels="true" />
+            <fluent:FluentControl BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                  IsSmartClipped="True"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                <Grid>
+                    <ContentPresenter x:Name="Content"
+                                      Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Focusable="False"
+                                      RecognizesAccessKey="True"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      Visibility="{TemplateBinding ap:IsBusyProperty.Value,
+                                                                   Converter={converters:BooleanToVisibilityConverter},
+                                                                   ConverterParameter=True}" />
+
+                    <Path x:Name="PART_IsBusyIndicator"
+                          MaxHeight="16"
+                          Margin="{TemplateBinding Padding}"
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Data="{StaticResource SpinnerGeometry}"
+                          Fill="{TemplateBinding Foreground}"
+                          RenderTransformOrigin="0.5, 0.5"
+                          Stretch="Uniform"
+                          Visibility="{TemplateBinding ap:IsBusyProperty.Value,
+                                                       Converter={converters:BooleanToVisibilityConverter}}">
+                        <Path.RenderTransform>
+                            <RotateTransform Angle="0" />
+                        </Path.RenderTransform>
+                    </Path>
+                </Grid>
+            </fluent:FluentControl>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger SourceName="PART_IsBusyIndicator" Property="IsVisible" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard Name="SpinStoryboard" Storyboard="{StaticResource Spin}" />
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <RemoveStoryboard BeginStoryboardName="SpinStoryboard" />
+                </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                <Setter TargetName="BorderVisual" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.PressedBrush), Mode=OneWay}" />
+                <Setter TargetName="BorderVisual" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.PressedBrush), Mode=OneWay}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource ResourceKey=AlternativeBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=AlternativeBrush}" />
+                <Setter TargetName="Content" Property="Opacity" Value="{DynamicResource ResourceKey=DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{themes:FluentResource MainBrush}" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource MainBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="MinHeight" Value="23" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template" Value="{DynamicResource ButtonTemplate}" />
+        <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ap:IsBusyProperty.Value" Value="False" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="{themes:FluentResource CornerRadius}" />
+        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
+        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource MouseOverBrush}" />
+        <Setter Property="fluent:FluentAssist.PressedBrush" Value="{themes:FluentResource PressedBrush}" />
+    </Style>
+    <Style BasedOn="{StaticResource ButtonStyle}" TargetType="{x:Type Button}" />
+
+    <ControlTemplate x:Key="LinkButtonTemplate" TargetType="{x:Type Button}">
+        <TextBlock x:Name="PART_Content"
+                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                   Text="{TemplateBinding Content}" />
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="PART_Content" Property="TextDecorations" Value="Underline" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="PART_Content" Property="Opacity" Value="0.8" />
+                <Setter TargetName="PART_Content" Property="TextDecorations" Value="Underline" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="LinkButtonStyle"
+           BasedOn="{StaticResource ButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Template" Value="{StaticResource LinkButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="RepeatButtonStyle" TargetType="RepeatButton">
+        <Setter Property="Background" Value="{themes:FluentResource MainBrush}" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource MainBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
+        <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Grid>
+                        <Border x:Name="BorderVisual"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Border x:Name="FocusVisual"
+                                Background="{x:Null}"
+                                BorderBrush="{TemplateBinding fluent:FluentAssist.FocusBrush}"
+                                BorderThickness="{themes:FluentResource FocusThickness}"
+                                CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                IsHitTestVisible="False"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                Visibility="Collapsed" />
+                        <fluent:FluentControl BorderThickness="{TemplateBinding BorderThickness}"
+                                              CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}"
+                                              EffectMode="Glow"
+                                              IsSmartClipped="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <ContentPresenter x:Name="Content"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                              Focusable="False"
+                                              RecognizesAccessKey="True"
+                                              TextBlock.Foreground="{TemplateBinding Foreground}" />
+                        </fluent:FluentControl>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True" />
+                                <Condition Property="IsPressed" Value="False" />
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="FocusVisual" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(fluent:FluentAssist.PressedBrush), Mode=OneWay}" />
+                            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=(fluent:FluentAssist.PressedBrush), Mode=OneWay}" />
+                        </Trigger>
+
+                        <!--  disabled and focused  -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False" />
+                                <Condition Property="IsKeyboardFocused" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="FocusVisual" Property="Visibility" Value="Collapsed" />
+                        </MultiTrigger>
+
+                        <!--  disabled  -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{themes:FluentResource AlternativeBrush}" />
+                            <Setter Property="BorderBrush" Value="{themes:FluentResource AlternativeBrush}" />
+                            <Setter TargetName="Content" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="{themes:FluentResource CornerRadius}" />
+        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
+        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource MouseOverBrush}" />
+        <Setter Property="fluent:FluentAssist.PressedBrush" Value="{themes:FluentResource PressedBrush}" />
+    </Style>
+    <Style BasedOn="{StaticResource RepeatButtonStyle}" TargetType="RepeatButton" />
+
+    <ControlTemplate x:Key="WindowButtonTemplate" TargetType="{x:Type Button}">
+        <Grid>
+            <Border x:Name="BorderVisual"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius}" />
+            <ContentPresenter x:Name="Content"
+                              Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{themes:FluentResource MouseOverBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{themes:FluentResource PressedBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter TargetName="Content" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="WindowButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource IconBrush}" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template" Value="{StaticResource WindowButtonTemplate}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="0" />
+    </Style>
+
+    <Style x:Key="WindowCloseButtonStyle"
+           BasedOn="{StaticResource WindowButtonStyle}"
+           TargetType="{x:Type Button}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{themes:FluentResource ValidationBrush}" />
+                <Setter Property="Foreground" Value="{themes:FluentResource MarkerInvertedBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{themes:FluentResource ValidationBrush}" />
+                <Setter Property="Foreground" Value="{themes:FluentResource MarkerInvertedBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

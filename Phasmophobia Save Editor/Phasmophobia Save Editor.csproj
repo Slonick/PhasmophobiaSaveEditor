@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4E230C2-1C4D-4C9B-9294-8DE0FD5ED3D6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PhasmophobiaSaveEditor</RootNamespace>
+    <AssemblyName>Phasmophobia Save Editor</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\IsBusyProperty.cs" />
+    <Compile Include="Attributes\CultureNameAttribute.cs" />
+    <Compile Include="Configuration\Attributes\ConfigurationAttribute.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Configuration\IConfigurationManager.cs" />
+    <Compile Include="Controls\Dialog\DialogButton.cs" />
+    <Compile Include="Controls\Dialog\DialogIcon.cs" />
+    <Compile Include="Controls\Dialog\DialogParameters.cs" />
+    <Compile Include="Controls\Dialog\MessageDialog.cs" />
+    <Compile Include="Controls\Dialog\MessageDialogCommands.cs" />
+    <Compile Include="Controls\DropDownButton\DropDownButton.cs" />
+    <Compile Include="Controls\DropDownButton\DropDownButtonPosition.cs" />
+    <Compile Include="Controls\ExceptionWindow.cs" />
+    <Compile Include="Controls\FluentWindow.cs" />
+    <Compile Include="Controls\Fluent\AcrylicPanel.cs" />
+    <Compile Include="Controls\Fluent\FluentAssist.cs" />
+    <Compile Include="Controls\Fluent\FluentControl.cs" />
+    <Compile Include="Controls\Fluent\FluentControlEffectMode.cs" />
+    <Compile Include="Controls\Fluent\FluentShadowDepth.cs" />
+    <Compile Include="Controls\Fluent\InnerGlow.cs" />
+    <Compile Include="Controls\Fluent\MathUtilities.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDownCommands.cs" />
+    <Compile Include="Controls\SplitButton.cs" />
+    <Compile Include="Controls\STWindow.cs" />
+    <Compile Include="Converters\AnyBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\Base\MarkupMultiValueConverter.cs" />
+    <Compile Include="Converters\Base\MarkupValueConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BrushTranslationConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\CornerRadiusConverter.cs" />
+    <Compile Include="Converters\CornerRadiusToOrientedCornerRadiusConverter.cs" />
+    <Compile Include="Converters\DialogIconToImageSourceConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\ExceptionToStringConverter.cs" />
+    <Compile Include="Converters\GetTypeConverter.cs" />
+    <Compile Include="Converters\HorizontalContentAlignmentToTextAlignmentConverter.cs" />
+    <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Converters\LocalizationConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\OpacityConverter.cs" />
+    <Compile Include="Converters\ThicknessToOrientedThicknessConverter.cs" />
+    <Compile Include="Extensions\ArgumentVerificationExtensions.cs" />
+    <Compile Include="Extensions\AssemblyExtension.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
+    <Compile Include="Extensions\ParentOfTypeExtensions.cs" />
+    <Compile Include="Handlers\ExceptionHandler.cs" />
+    <Compile Include="Handlers\OneInstanceHandler.cs" />
+    <Compile Include="Infrastructures\Language.cs" />
+    <Compile Include="Infrastructures\Theme.cs" />
+    <Compile Include="Infrastructures\WindowsVersion.cs" />
+    <Compile Include="MarkupExtensions\DynamicResourceProxy.cs" />
+    <Compile Include="MarkupExtensions\LocalizationBinding.cs" />
+    <Compile Include="Models\BaseData.cs" />
+    <Compile Include="Models\Configuration\AppearanceOptions.cs" />
+    <Compile Include="Models\Configuration\UserConfigOptions.cs" />
+    <Compile Include="Models\EditableSaveIntProperty.cs" />
+    <Compile Include="Models\EditableSaveProperty.cs" />
+    <Compile Include="Models\PhasmophobiaSave.cs" />
+    <Compile Include="Native\NativeEnums.cs" />
+    <Compile Include="Native\NativeMethods.cs" />
+    <Compile Include="Native\NativeStructs.cs" />
+    <Compile Include="Services\SaveService.cs" />
+    <Compile Include="Themes\Fluent\FluentPalette.cs" />
+    <Compile Include="Themes\Fluent\FluentResourceDictionary.cs" />
+    <Compile Include="Themes\Fluent\FluentResourceExtension.cs" />
+    <Compile Include="Themes\Fluent\FluentResourceKey.cs" />
+    <Compile Include="Themes\Fluent\FluentResourceKeyID.cs" />
+    <Compile Include="Themes\Fluent\FluentResourceKeyTypeConverter.cs" />
+    <Compile Include="Themes\IDynamicThemePalette.cs" />
+    <Compile Include="Themes\ThemePalette.cs" />
+    <Compile Include="Themes\ThemeResourceExtension.cs" />
+    <Compile Include="Themes\ThemeResourceKeyTypeConverter.cs" />
+    <Compile Include="Utils\AcrylicHelper.cs" />
+    <Compile Include="Utils\JsonSerializer.cs" />
+    <Compile Include="Utils\LocalizationManager.cs" />
+    <Compile Include="Utils\ThemeManager.cs" />
+    <Compile Include="Utils\UIDispatcher.cs" />
+    <Compile Include="Utils\WindowResizer.cs" />
+    <Compile Include="Utils\WindowsOSHelper.cs" />
+    <Compile Include="ViewModels\Base\BaseBindable.cs" />
+    <Compile Include="ViewModels\Base\RelayCommand.cs" />
+    <Compile Include="Models\EditableSaveStringProperty.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Resources\Icons\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\DialogIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Localization\lang.en-US.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Localization\lang.ru-RU.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\DropDownButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\Styles\Fluent\AcrylicPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\CommonControls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\ContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\FluentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\ScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\Separator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\ToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Fluent\Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\FluentTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Assets\Images\noise.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
