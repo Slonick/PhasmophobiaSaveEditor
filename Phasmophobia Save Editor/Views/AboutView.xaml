@@ -60,7 +60,7 @@
                         Height="36"
                         Command="{Binding OpenLinkCommand}"
                         CommandParameter="https://slonick.com"
-                        ToolTip="Personal Web Site">
+                        ToolTip="{DynamicResource About.PersonalWebSite}">
                     <Path Data="{DynamicResource WebSiteGeometry}"
                           Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                                                         AncestorType={x:Type Button}},
@@ -75,7 +75,7 @@
                    VerticalAlignment="Bottom"
                    FontSize="{themes:FluentResource FontSize}"
                    Foreground="{themes:FluentResource MarkerBrush}"
-                   Text="© Copyright 2020 Slonick. All Rights Reserved."
+                   Text="{DynamicResource About.Copyright}"
                    TextAlignment="Center" />
 
     </Grid>

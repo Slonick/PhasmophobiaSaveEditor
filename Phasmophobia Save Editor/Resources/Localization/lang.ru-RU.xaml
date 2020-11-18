@@ -52,9 +52,8 @@
     <!--#region About-->
     <v:String x:Key="About">О программе</v:String>
     <v:String x:Key="About.Version">Версия</v:String>
-    <v:String x:Key="About.Build">Сборка</v:String>
-    <v:String x:Key="About.CheckForUpdate">Проверить обновление</v:String>
-    <v:String x:Key="About.ChangeLog">Список изменений</v:String>
+    <v:String x:Key="About.PersonalWebSite">Персональный сайт</v:String>
+    <v:String x:Key="About.Copyright">© Авторское право 2020 Slonick. Все права защищены.</v:String>
     <!--#endregion About-->
 
     <!--#region Buttons-->

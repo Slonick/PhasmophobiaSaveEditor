@@ -51,9 +51,8 @@ If you agree to these terms, click &quot;Yes&quot;.</v:String>
     <!--#region About-->
     <v:String x:Key="About">About</v:String>
     <v:String x:Key="About.Version">Version</v:String>
-    <v:String x:Key="About.Build">Build</v:String>
-    <v:String x:Key="About.CheckForUpdate">Check for update</v:String>
-    <v:String x:Key="About.ChangeLog">Change Log</v:String>
+    <v:String x:Key="About.PersonalWebSite">Personal Web Site</v:String>
+    <v:String x:Key="About.Copyright">© Copyright 2020 Slonick. All Rights Reserved.</v:String>
     <!--#endregion About-->
 
     <!--#region Buttons-->
