@@ -10,9 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       name: Checkout Code
-     
+      
+    # disable command workflow processing
     - name: Setup MSBuild Path
       uses: warrenbuckley/Setup-MSBuild@v1
+    # enable workflow command processing
        
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
