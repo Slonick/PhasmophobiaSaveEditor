@@ -90,4 +90,4 @@ namespace PhasmophobiaSaveEditor.Controls
             this.UpdateBlur();
         }
     }
-}
+}   

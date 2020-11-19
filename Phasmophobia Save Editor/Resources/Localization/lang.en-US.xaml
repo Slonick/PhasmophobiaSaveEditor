@@ -9,6 +9,8 @@
     <v:String x:Key="Main.Themes.Dark">Dark</v:String>
     <v:String x:Key="Main.Themes.Light">Light</v:String>
     <v:String x:Key="Main.Reload">Reload</v:String>
+    <v:String x:Key="Main.SetAllItems">Set All Items</v:String>
+    <v:String x:Key="Main.SetAllItems.Description">Please enter count of items</v:String>
     <v:String x:Key="Main.Save">Save</v:String>
     <v:String x:Key="Main.Saved">Changes saved successfully.</v:String>
     <v:String x:Key="Main.SaveNotExist">Save file not found.</v:String>

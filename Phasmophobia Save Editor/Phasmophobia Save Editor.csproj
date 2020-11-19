@@ -169,6 +169,10 @@
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="Models\EditableSaveStringProperty.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SetAllItemsViewModel.cs" />
+    <Compile Include="Views\SetAllItemsView.xaml.cs">
+      <DependentUpon>SetAllItemsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\Icons\Common.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -267,6 +271,10 @@
     <Page Include="Resources\Themes\FluentTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SetAllItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

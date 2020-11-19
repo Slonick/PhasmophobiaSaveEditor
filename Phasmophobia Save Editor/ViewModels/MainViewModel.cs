@@ -19,6 +19,32 @@ namespace PhasmophobiaSaveEditor.ViewModels
         private readonly SaveService saveService;
         private List<object> editableSaveProperties;
 
+        private readonly List<string> itemsList = new List<string>
+        {
+            "EMFReaderInventory",
+            "FlashlightInventory",
+            "CameraInventory",
+            "LighterInventory",
+            "CandleInventory",
+            "UVFlashlightInventory",
+            "CrucifixInventory",
+            "DSLRCameraInventory",
+            "EVPRecorderInventory",
+            "SaltInventory",
+            "SageInventory",
+            "TripodInventory",
+            "StrongFlashlightInventory",
+            "MotionSensorInventory",
+            "SoundSensorInventory",
+            "SanityPillsInventory",
+            "ThermometerInventory",
+            "GhostWritingBookInventory",
+            "IRLightSensorInventory",
+            "ParabolicMicrophoneInventory",
+            "GlowstickInventory",
+            "HeadMountedCameraInventory"
+        };
+
         private PhasmophobiaSave phasmophobiaSave;
         private Theme theme = Theme.Light;
 
@@ -28,6 +54,7 @@ namespace PhasmophobiaSaveEditor.ViewModels
             this.SaveCommand = new RelayCommand(this.SaveCommandExecute);
             this.ReloadCommand = new RelayCommand(this.ReloadCommandExecute);
             this.OpenAboutCommand = new RelayCommand(this.OpenAboutCommandExecute);
+            this.SetAllItemsCommand = new RelayCommand(this.SetAllItemsCommandExecute);
         }
 
         public ICommand OpenAboutCommand { get; }
@@ -35,6 +62,7 @@ namespace PhasmophobiaSaveEditor.ViewModels
         public ICommand ReloadCommand { get; }
 
         public ICommand SaveCommand { get; }
+        public ICommand SetAllItemsCommand { get; }
 
         public List<object> EditableSaveProperties
         {
@@ -142,6 +170,27 @@ namespace PhasmophobiaSaveEditor.ViewModels
         {
             this.saveService.Save(this.PhasmophobiaSave);
             MessageDialog.ShowDialog(DialogParameters.Success(LocalizationManager.GetLocalizationString("Main.Saved")));
+        }
+
+        private void SetAllItemsCommandExecute()
+        {
+            var vm = new SetAllItemsViewModel();
+            var result = MessageDialog.ShowDialog(new DialogParameters
+            {
+                Button = DialogButton.OKCancel,
+                Content = new SetAllItemsView(vm),
+                DialogStartupLocation = WindowStartupLocation.CenterOwner,
+                Header = LocalizationManager.GetLocalizationString("Main.SetAllItems")
+            });
+
+            if (result == true)
+            {
+                this.itemsList.ForEach(x =>
+                {
+                    var saveProperty = this.EditableSaveProperties.OfType<EditableSaveProperty<int>>().First(xx => xx.Data.Key == x);
+                    saveProperty.Data.Value = vm.Value;
+                });
+            }
         }
     }
 }
