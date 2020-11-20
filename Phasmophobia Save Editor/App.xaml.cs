@@ -60,6 +60,7 @@ namespace PhasmophobiaSaveEditor
             }
 
             Current.MainWindow.Show();
+            Current.MainWindow.Focus();
 
             if (Current.MainWindow.DataContext is MainViewModel vm)
             {

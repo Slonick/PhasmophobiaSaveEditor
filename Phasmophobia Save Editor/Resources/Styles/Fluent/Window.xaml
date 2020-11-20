@@ -496,7 +496,6 @@
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <!--  Header  -->
@@ -587,8 +586,8 @@
                                                   Content="{Binding RelativeSource={RelativeSource TemplatedParent},
                                                                     Path=Parameters.Content}" />
                             </Grid>
-                            <Separator Grid.Row="2" Margin="10,0" />
-                            <Border Grid.Row="3"
+
+                            <Border Grid.Row="2"
                                     Padding="5"
                                     Background="{themes:FluentResource AlternativeBrush}"
                                     ClipToBounds="True"
