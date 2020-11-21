@@ -19,10 +19,10 @@
     <Style x:Key="IncreaseDecreaseRepeatButtonBaseStyle"
            BasedOn="{StaticResource RepeatButtonStyle}"
            TargetType="RepeatButton">
-        <Setter Property="Foreground" Value="{themes:FluentResource IconBrush}" />
         <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
-        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="Foreground" Value="{themes:FluentResource IconBrush}" />
         <Setter Property="IsEnabled" Value="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}, Converter={converters:InvertedBooleanConverter}}" />
+        <Setter Property="Padding" Value="10,5" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
@@ -165,8 +165,8 @@
                     <Condition Property="ShowTextBox" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter Property="Foreground" Value="{themes:FluentResource MarkerMouseOverBrush}" />
-                <Setter TargetName="textbox" Property="Opacity" Value="1" />
                 <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
+                <Setter TargetName="textbox" Property="Opacity" Value="1" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -174,32 +174,32 @@
                     <Condition Property="ShowTextBox" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter TargetName="textbox" Property="Opacity" Value="{themes:FluentResource ReadOnlyOpacity}" />
                 <Setter TargetName="ReadOnlyVisual" Property="Visibility" Value="Visible" />
+                <Setter TargetName="textbox" Property="Opacity" Value="{themes:FluentResource ReadOnlyOpacity}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsReadOnly" Value="True" />
                     <Condition Property="ShowButtons" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="decrease" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" />
-                <Setter TargetName="increase" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" />
                 <Setter TargetName="decrease" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+                <Setter TargetName="decrease" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" />
                 <Setter TargetName="increase" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+                <Setter TargetName="increase" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=Left}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ShowTextBox" Value="True" />
                     <Condition Property="ShowButtons" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="BorderVisual" Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" />
                 <Setter TargetName="BorderVisual" Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" />
+                <Setter TargetName="BorderVisual" Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" />
             </MultiTrigger>
             <Trigger Property="ShowTextBox" Value="False">
-                <Setter TargetName="textbox" Property="Visibility" Value="Collapsed" />
-                <Setter TargetName="decrease" Property="fluent:FluentAssist.CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" />
                 <Setter TargetName="BorderVisual" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="Column" Property="Width" Value="0" />
+                <Setter TargetName="decrease" Property="fluent:FluentAssist.CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusConverter}, ConverterParameter=LeftTopBottom}" />
+                <Setter TargetName="textbox" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -207,14 +207,14 @@
                     <Condition Property="IsReadOnly" Value="True" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="BorderVisual" Property="Visibility" Value="Collapsed" />
-                <Setter TargetName="decrease" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" />
-                <Setter TargetName="increase" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopRightBottom}" />
                 <Setter TargetName="decrease" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+                <Setter TargetName="decrease" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopBottom}" />
                 <Setter TargetName="increase" Property="BorderBrush" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderBrush}" />
+                <Setter TargetName="increase" Property="BorderThickness" Value="{Binding ElementName=ReadOnlyVisual, Path=BorderThickness, Converter={converters:ThicknessToOrientedThicknessConverter}, ConverterParameter=LeftTopRightBottom}" />
             </MultiTrigger>
             <Trigger Property="ShowButtons" Value="False">
-                <Setter TargetName="increase" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="decrease" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="increase" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -223,34 +223,34 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Foreground" Value="{themes:FluentResource MarkerMouseOverBrush}" />
                 <Setter TargetName="BorderVisual" Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.MouseOverBrush), Mode=OneWay}" />
-                <Setter TargetName="textbox" Property="Opacity" Value="1" />
                 <Setter TargetName="FocusVisual" Property="Visibility" Value="Visible" />
+                <Setter TargetName="textbox" Property="Opacity" Value="1" />
             </MultiTrigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="textbox" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
                 <Setter TargetName="BorderVisual" Property="Background" Value="{themes:FluentResource PrimaryBrush}" />
+                <Setter TargetName="textbox" Property="Opacity" Value="{themes:FluentResource DisabledOpacity}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <Style x:Key="NumericUpDownStyle" TargetType="controls:NumericUpDown">
-        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource PrimaryMouseOverBrush}" />
-        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
-        <Setter Property="fluent:FluentAssist.CornerRadius" Value="{themes:FluentResource CornerRadius}" />
-        <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
-        <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
-        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
         <Setter Property="Background" Value="{themes:FluentResource PrimaryBrush}" />
         <Setter Property="BorderBrush" Value="{themes:FluentResource BasicBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="5,6" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
+        <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
+        <Setter Property="Foreground" Value="{themes:FluentResource MarkerBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="Template" Value="{StaticResource NumericUpDownControlTemplate}" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="5,6" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template" Value="{StaticResource NumericUpDownControlTemplate}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTooltipTemplate}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="fluent:FluentAssist.CornerRadius" Value="{themes:FluentResource CornerRadius}" />
+        <Setter Property="fluent:FluentAssist.FocusBrush" Value="{themes:FluentResource AccentFocusedBrush}" />
+        <Setter Property="fluent:FluentAssist.MouseOverBrush" Value="{themes:FluentResource PrimaryMouseOverBrush}" />
     </Style>
     <Style BasedOn="{StaticResource NumericUpDownStyle}" TargetType="controls:NumericUpDown" />
 

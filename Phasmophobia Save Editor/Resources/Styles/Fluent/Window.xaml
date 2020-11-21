@@ -195,6 +195,7 @@
             </Trigger>-->
 
             <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="BorderBrush" Value="{themes:FluentResource ReadOnlyBorderBrush}" />
                 <Setter Property="FluentIsEnabled" Value="False" />
             </DataTrigger>
 
@@ -224,6 +225,8 @@
 
     <Style x:Key="FluentWindowStyle" TargetType="{x:Type controls:FluentWindow}">
         <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource AccentPressedBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="FluentBackground" Value="{themes:FluentResource AlternativeBrush}" />
         <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
         <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
@@ -457,6 +460,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="BorderBrush" Value="{themes:FluentResource ReadOnlyBorderBrush}" />
                             <Setter Property="FluentIsEnabled" Value="False" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -467,6 +471,8 @@
     </Style>
 
     <Style TargetType="{x:Type dialog:MessageDialogInternal}">
+        <Setter Property="BorderBrush" Value="{themes:FluentResource AccentBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
         <!--<Setter Property="AllowsTransparency" Value="True" />-->
         <Setter Property="FluentBackground" Value="{themes:FluentResource AlternativeBrush}" />
         <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
@@ -669,6 +675,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="BorderBrush" Value="{themes:FluentResource ReadOnlyBorderBrush}" />
                             <Setter Property="FluentIsEnabled" Value="False" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
