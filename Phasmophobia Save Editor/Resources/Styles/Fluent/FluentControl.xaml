@@ -40,42 +40,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type fluent:FluentControl}">
                     <Grid Background="Transparent">
-                        <Canvas HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                IsHitTestVisible="False"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-
-                            <!--  this is the feedback element used in code  -->
-                            <Ellipse x:Name="PART_FeedbackElement"
-                                     Canvas.Left="{TemplateBinding RippleX}"
-                                     Canvas.Top="{TemplateBinding RippleY}"
-                                     Width="{TemplateBinding RippleSize}"
-                                     Height="{TemplateBinding RippleSize}"
-                                     Fill="{TemplateBinding RippleBrush}"
-                                     Opacity="0"
-                                     RenderTransformOrigin=".5 .5">
-                                <Ellipse.RenderTransform>
-                                    <ScaleTransform x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
-                                </Ellipse.RenderTransform>
-                            </Ellipse>
-                        </Canvas>
-                        <fluent:InnerGlow x:Name="innerGlow"
-                                          Opacity="0"
-                                          Visibility="Collapsed" />
-                        <Border x:Name="rootBorder"
-                                Background="{x:Null}"
-                                BorderBrush="{TemplateBinding BorderGradient}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <ContentControl Margin="{TemplateBinding Padding}"
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            Content="{TemplateBinding Content}"
-                                            Focusable="False"
-                                            IsTabStop="False"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Border>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
@@ -220,6 +184,42 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <Canvas HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                IsHitTestVisible="False"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+
+                            <!--  this is the feedback element used in code  -->
+                            <Ellipse x:Name="PART_FeedbackElement"
+                                     Canvas.Left="{TemplateBinding RippleX}"
+                                     Canvas.Top="{TemplateBinding RippleY}"
+                                     Width="{TemplateBinding RippleSize}"
+                                     Height="{TemplateBinding RippleSize}"
+                                     Fill="{TemplateBinding RippleBrush}"
+                                     Opacity="0"
+                                     RenderTransformOrigin=".5 .5">
+                                <Ellipse.RenderTransform>
+                                    <ScaleTransform x:Name="PART_ScaleTransform" ScaleX="1" ScaleY="1" />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                        </Canvas>
+                        <fluent:InnerGlow x:Name="innerGlow"
+                                          Opacity="0"
+                                          Visibility="Collapsed" />
+                        <Border x:Name="rootBorder"
+                                Background="{x:Null}"
+                                BorderBrush="{TemplateBinding BorderGradient}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <ContentControl Margin="{TemplateBinding Padding}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Content="{TemplateBinding Content}"
+                                            Focusable="False"
+                                            IsTabStop="False"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="True">

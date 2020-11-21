@@ -7,9 +7,11 @@ namespace PhasmophobiaSaveEditor.Controls
 {
     public class STWindow : Window
     {
+        /// <summary>Identifies the <see cref="AdditionalContent"/> dependency property.</summary>
         public static readonly DependencyProperty AdditionalContentProperty =
             DependencyProperty.Register(nameof(AdditionalContent), typeof(object), typeof(STWindow), new PropertyMetadata(null));
 
+        /// <summary>Identifies the <see cref="HideHeader"/> dependency property.</summary>
         public static readonly DependencyProperty HideHeaderProperty =
             DependencyProperty.Register(nameof(HideHeader), typeof(bool), typeof(STWindow), new PropertyMetadata(false));
 
@@ -19,24 +21,16 @@ namespace PhasmophobiaSaveEditor.Controls
 
         protected STWindow()
         {
-            this.MinimizeCommand = new RelayCommand(() => SystemCommands.MinimizeWindow(this),
-                                                    () => this.ResizeMode >= ResizeMode.CanMinimize);
-
-            this.RestoreCommand = new RelayCommand(() => SystemCommands.RestoreWindow(this),
-                                                   () => this.ResizeMode >= ResizeMode.CanResize);
-
-            this.MaximizeCommand = new RelayCommand(() => SystemCommands.MaximizeWindow(this),
-                                                    () => this.ResizeMode >= ResizeMode.CanResize);
-
-            this.CloseCommand = new RelayCommand(() => SystemCommands.CloseWindow(this));
-
             this.Loaded += this.OnLoaded;
         }
 
-        public ICommand CloseCommand { get; }
-        public ICommand MaximizeCommand { get; }
-        public ICommand MinimizeCommand { get; }
-        public ICommand RestoreCommand { get; }
+        static STWindow()
+        {
+            CommandManager.RegisterClassCommandBinding(typeof(STWindow), new CommandBinding(SystemCommands.CloseWindowCommand, ExecuteSystemCommand, CanExecuteSystemCommand));
+            CommandManager.RegisterClassCommandBinding(typeof(STWindow), new CommandBinding(SystemCommands.MaximizeWindowCommand, ExecuteSystemCommand, CanExecuteSystemCommand));
+            CommandManager.RegisterClassCommandBinding(typeof(STWindow), new CommandBinding(SystemCommands.MinimizeWindowCommand, ExecuteSystemCommand, CanExecuteSystemCommand));
+            CommandManager.RegisterClassCommandBinding(typeof(STWindow), new CommandBinding(SystemCommands.RestoreWindowCommand, ExecuteSystemCommand, CanExecuteSystemCommand));
+        }
 
         public object AdditionalContent
         {
@@ -56,14 +50,62 @@ namespace PhasmophobiaSaveEditor.Controls
             set => this.SetValue(ShowIconProperty, value);
         }
 
-        protected virtual void OnLoaded(Window sender) { }
+        private static void CanExecuteSystemCommand(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (!(e.Command is RoutedCommand command) || !(sender is STWindow window))
+            {
+                return;
+            }
+
+            if (command.Name == SystemCommands.CloseWindowCommand.Name)
+            {
+                e.CanExecute = true;
+            }
+            else if (command.Name == SystemCommands.MaximizeWindowCommand.Name)
+            {
+                e.CanExecute = window.ResizeMode >= ResizeMode.CanResize;
+            }
+            else if (command.Name == SystemCommands.MinimizeWindowCommand.Name)
+            {
+                e.CanExecute = window.ResizeMode >= ResizeMode.CanResize;
+            }
+            else if (command.Name == SystemCommands.RestoreWindowCommand.Name)
+            {
+                e.CanExecute = window.ResizeMode >= ResizeMode.CanResize;
+            }
+        }
+
+        private static void ExecuteSystemCommand(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (!(e.Command is RoutedCommand command) || !(sender is STWindow window))
+            {
+                return;
+            }
+
+            if (command.Name == SystemCommands.CloseWindowCommand.Name)
+            {
+                SystemCommands.CloseWindow(window);
+            }
+            else if (command.Name == SystemCommands.MaximizeWindowCommand.Name)
+            {
+                SystemCommands.MaximizeWindow(window);
+            }
+            else if (command.Name == SystemCommands.MinimizeWindowCommand.Name)
+            {
+                SystemCommands.MinimizeWindow(window);
+            }
+            else if (command.Name == SystemCommands.RestoreWindowCommand.Name)
+            {
+                SystemCommands.RestoreWindow(window);
+            }
+        }
 
         private void OnLoaded(object sender, EventArgs eventArgs)
         {
             this.Loaded -= this.OnLoaded;
-            if (sender is Window window)
+            if (this.DataContext is IWindowViewModel vm)
             {
-                this.OnLoaded(window);
+                vm.OnLoaded(this);
             }
         }
     }

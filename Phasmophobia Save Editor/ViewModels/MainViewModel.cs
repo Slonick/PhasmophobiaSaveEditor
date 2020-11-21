@@ -14,11 +14,8 @@ using PhasmophobiaSaveEditor.Views;
 
 namespace PhasmophobiaSaveEditor.ViewModels
 {
-    internal class MainViewModel : BaseBindable
+    internal class MainViewModel : BaseBindable, IWindowViewModel
     {
-        private readonly SaveService saveService;
-        private List<object> editableSaveProperties;
-
         private readonly List<string> itemsList = new List<string>
         {
             "EMFReaderInventory",
@@ -45,6 +42,8 @@ namespace PhasmophobiaSaveEditor.ViewModels
             "HeadMountedCameraInventory"
         };
 
+        private readonly SaveService saveService;
+        private List<object> editableSaveProperties;
         private PhasmophobiaSave phasmophobiaSave;
         private Theme theme = Theme.Light;
 
@@ -58,9 +57,7 @@ namespace PhasmophobiaSaveEditor.ViewModels
         }
 
         public ICommand OpenAboutCommand { get; }
-
         public ICommand ReloadCommand { get; }
-
         public ICommand SaveCommand { get; }
         public ICommand SetAllItemsCommand { get; }
 
@@ -101,6 +98,11 @@ namespace PhasmophobiaSaveEditor.ViewModels
         }
 
         public void Init()
+        {
+            this.Load();
+        }
+
+        public void OnLoaded(Window window)
         {
             this.Load();
         }

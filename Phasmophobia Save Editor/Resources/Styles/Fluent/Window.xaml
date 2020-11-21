@@ -74,8 +74,7 @@
                             <!--  System Buttons  -->
                             <StackPanel Grid.Column="3" Orientation="Horizontal">
                                 <Button x:Name="MinimizeButton"
-                                        Command="{Binding MinimizeCommand,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type controls:STWindow}}}"
+                                        Command="{x:Static SystemCommands.MinimizeWindowCommand}"
                                         Style="{DynamicResource WindowButtonStyle}">
                                     <Path Width="10"
                                           Height="10"
@@ -92,8 +91,7 @@
                                     </Path>
                                 </Button>
                                 <Button x:Name="MaximizeButton"
-                                        Command="{Binding MaximizeCommand,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type controls:STWindow}}}"
+                                        Command="{x:Static SystemCommands.MaximizeWindowCommand}"
                                         Style="{DynamicResource WindowButtonStyle}">
                                     <Path Width="10"
                                           Height="10"
@@ -115,8 +113,7 @@
                                     </Path>
                                 </Button>
                                 <Button x:Name="RestoreButton"
-                                        Command="{Binding RestoreCommand,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type controls:STWindow}}}"
+                                        Command="{x:Static SystemCommands.RestoreWindowCommand}"
                                         Style="{DynamicResource WindowButtonStyle}">
                                     <Path Width="10"
                                           Height="10"
@@ -142,8 +139,7 @@
                                         fluent:FluentAssist.CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius,
                                                                                            Converter={converters:CornerRadiusToOrientedCornerRadiusConverter},
                                                                                            ConverterParameter=tright}"
-                                        Command="{Binding CloseCommand,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type controls:STWindow}}}"
+                                        Command="{x:Static SystemCommands.CloseWindowCommand}"
                                         Style="{DynamicResource WindowCloseButtonStyle}">
                                     <Path Width="10"
                                           Height="10"
@@ -302,8 +298,7 @@
                                             fluent:FluentAssist.CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius,
                                                                                                Converter={converters:CornerRadiusToOrientedCornerRadiusConverter},
                                                                                                ConverterParameter=tright}"
-                                            Command="{Binding CloseCommand,
-                                                              RelativeSource={RelativeSource AncestorType={x:Type controls:STWindow}}}"
+                                            Command="{x:Static SystemCommands.CloseWindowCommand}"
                                             Style="{DynamicResource WindowCloseButtonStyle}">
                                         <Path Width="10"
                                               Height="10"
@@ -540,8 +535,7 @@
                                             fluent:FluentAssist.CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius,
                                                                                                Converter={converters:CornerRadiusToOrientedCornerRadiusConverter},
                                                                                                ConverterParameter=tright}"
-                                            Command="{Binding CloseCommand,
-                                                              RelativeSource={RelativeSource AncestorType={x:Type controls:STWindow}}}"
+                                            Command="{x:Static SystemCommands.CloseWindowCommand}"
                                             Style="{DynamicResource WindowCloseButtonStyle}">
                                         <Path Width="10"
                                               Height="10"
