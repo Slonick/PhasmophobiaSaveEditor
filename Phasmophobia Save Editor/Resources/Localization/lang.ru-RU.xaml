@@ -10,6 +10,8 @@
     <v:String x:Key="Main.Themes.Light">Светлая</v:String>
     <v:String x:Key="Main.Notifications">Уведомления</v:String>
     <v:String x:Key="Main.Reload">Перезагрузить</v:String>
+    <v:String x:Key="Main.SetAllItems">Установить все предметы</v:String>
+    <v:String x:Key="Main.SetAllItems.Description">Пожалуйста, введите количество предметов</v:String>
     <v:String x:Key="Main.Save">Сохранить</v:String>
     <v:String x:Key="Main.Saved">Изменения успешно сохранены.</v:String>
     <v:String x:Key="Main.SaveNotExist">Файл сохранения не найден.</v:String>

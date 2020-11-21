@@ -12,9 +12,9 @@
                        xmlns:themes="clr-namespace:PhasmophobiaSaveEditor.Themes"
                        xmlns:vm="clr-namespace:PhasmophobiaSaveEditor.ViewModels"
                        Title="Phasmophobia Save Editor"
-                       Width="400"
+                       Width="430"
                        Height="450"
-                       MinWidth="400"
+                       MinWidth="430"
                        MinHeight="450"
                        d:DataContext="{d:DesignInstance vm:MainViewModel}"
                        FluentOpacity="210"
@@ -218,6 +218,11 @@
                                      Converter={converters:ColorToBrushConverter},
                                      ConverterParameter=255}">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Width="Auto"
+                        MinWidth="100"
+                        Command="{Binding SetAllItemsCommand}"
+                        Content="{DynamicResource Main.SetAllItems}" />
+                <Separator Style="{DynamicResource VerticalSeparatorStyle}" />
                 <Button Width="100"
                         Command="{Binding ReloadCommand}"
                         Content="{DynamicResource Main.Reload}" />

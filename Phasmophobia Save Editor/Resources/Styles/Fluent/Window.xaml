@@ -193,9 +193,11 @@
             <!--<Trigger Property="HideHeader" Value="False">
                 <Setter TargetName="ContentMask" Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(fluent:FluentAssist.CornerRadius), Converter={converters:CornerRadiusToOrientedCornerRadiusConverter}, ConverterParameter=bleft bright}" />
             </Trigger>-->
-            <!--<Trigger Property="IsActive" Value="False">
-                <Setter Property="Background" Value="{themes:FluentResource AlternativeBrush}" />
-            </Trigger>-->
+
+            <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                <Setter Property="BorderBrush" Value="{themes:FluentResource ReadOnlyBorderBrush}" />
+                <Setter Property="FluentIsEnabled" Value="False" />
+            </DataTrigger>
 
             <Trigger Property="WindowState" Value="Maximized">
                 <Setter Property="fluent:FluentAssist.CornerRadius" Value="0" />
@@ -223,6 +225,8 @@
 
     <Style x:Key="FluentWindowStyle" TargetType="{x:Type controls:FluentWindow}">
         <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="BorderBrush" Value="{themes:FluentResource AccentPressedBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="FluentBackground" Value="{themes:FluentResource AlternativeBrush}" />
         <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
         <Setter Property="FontSize" Value="{themes:FluentResource FontSize}" />
@@ -454,6 +458,12 @@
                             </ScrollViewer>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="BorderBrush" Value="{themes:FluentResource ReadOnlyBorderBrush}" />
+                            <Setter Property="FluentIsEnabled" Value="False" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -461,6 +471,8 @@
     </Style>
 
     <Style TargetType="{x:Type dialog:MessageDialogInternal}">
+        <Setter Property="BorderBrush" Value="{themes:FluentResource AccentBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
         <!--<Setter Property="AllowsTransparency" Value="True" />-->
         <Setter Property="FluentBackground" Value="{themes:FluentResource AlternativeBrush}" />
         <Setter Property="FontFamily" Value="{themes:FluentResource FontFamily}" />
@@ -490,14 +502,15 @@
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <!--  Header  -->
                             <Border Grid.Row="0"
-                                    Background="{DynamicResource PrimaryBrush}"
-                                    BorderBrush="{DynamicResource AccentBrush}"
-                                    BorderThickness="0,0,0,2">
+                                    Background="{themes:FluentResource AlternativeBrush}"
+                                    ClipToBounds="True"
+                                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius,
+                                                                   Converter={converters:CornerRadiusToOrientedCornerRadiusConverter},
+                                                                   ConverterParameter=tleft tright}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -519,7 +532,7 @@
                                                       VerticalAlignment="Center"
                                                       Content="{Binding RelativeSource={RelativeSource TemplatedParent},
                                                                         Path=Parameters.Header}"
-                                                      TextElement.Foreground="{DynamicResource MarkerBrush}" />
+                                                      TextElement.Foreground="{themes:FluentResource MarkerBrush}" />
 
                                     <!--  System Buttons  -->
                                     <Button x:Name="CloseButton"
@@ -579,8 +592,14 @@
                                                   Content="{Binding RelativeSource={RelativeSource TemplatedParent},
                                                                     Path=Parameters.Content}" />
                             </Grid>
-                            <Separator Grid.Row="2" Margin="10,0" />
-                            <Border Grid.Row="3" Margin="5">
+
+                            <Border Grid.Row="2"
+                                    Padding="5"
+                                    Background="{themes:FluentResource AlternativeBrush}"
+                                    ClipToBounds="True"
+                                    CornerRadius="{TemplateBinding fluent:FluentAssist.CornerRadius,
+                                                                   Converter={converters:CornerRadiusToOrientedCornerRadiusConverter},
+                                                                   ConverterParameter=bleft bright}">
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                     <Button Width="80"
                                             Command="dialog:MessageDialogCommands.YesResultCommand"
@@ -654,6 +673,12 @@
                             </Border>
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource Self}}" Value="False">
+                            <Setter Property="BorderBrush" Value="{themes:FluentResource ReadOnlyBorderBrush}" />
+                            <Setter Property="FluentIsEnabled" Value="False" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
