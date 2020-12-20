@@ -22,19 +22,6 @@
               HorizontalAlignment="Right"
               Opacity="0"
               RenderTransformOrigin="0 0">
-            <UIElement.RenderTransform>
-                <TranslateTransform x:Name="xform" X="-25" />
-            </UIElement.RenderTransform>
-            <Grid>
-                <Border Margin="2,0,0,0"
-                        Padding="1"
-                        Background="{DynamicResource ValidationBrush}">
-                    <ContentPresenter Margin="4,2"
-                                      Content="{Binding ErrorContent}"
-                                      TextBlock.Foreground="#FFFFFFFF" />
-                </Border>
-            </Grid>
-            <ContentControl />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="OpenStates">
                     <VisualStateGroup.Transitions>
@@ -78,6 +65,19 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
+            <UIElement.RenderTransform>
+                <TranslateTransform x:Name="xform" X="-25" />
+            </UIElement.RenderTransform>
+            <Grid>
+                <Border Margin="2,0,0,0"
+                        Padding="1"
+                        Background="{DynamicResource ValidationBrush}">
+                    <ContentPresenter Margin="4,2"
+                                      Content="{Binding ErrorContent}"
+                                      TextBlock.Foreground="#FFFFFFFF" />
+                </Border>
+            </Grid>
+            <ContentControl />
         </Grid>
     </ControlTemplate>
 

@@ -19,7 +19,7 @@
                        d:DataContext="{d:DesignInstance vm:MainViewModel}"
                        FluentOpacity="210"
                        Style="{DynamicResource {x:Type controls:FluentWindow}}"
-                       WindowStartupLocation="CenterScreen"
+                       WindowStartupLocation="Manual"
                        mc:Ignorable="d">
     <controls:STWindow.AdditionalContent>
         <StackPanel Orientation="Horizontal">
@@ -61,8 +61,8 @@
                                 <UniformGrid Columns="2">
                                     <RadioButton Margin="5" IsChecked="{Binding Path=Language, Converter={converters:EnumToBooleanConverter}, ConverterParameter={x:Static infrastructures:Language.Russian}}">
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="24"
-                                                   Height="24"
+                                            <Image Width="16"
+                                                   Height="16"
                                                    Margin="5,0"
                                                    Source="{DynamicResource RussiaDrawingImage}" />
                                             <TextBlock VerticalAlignment="Center" Text="Русский" />
@@ -70,8 +70,8 @@
                                     </RadioButton>
                                     <RadioButton Margin="5" IsChecked="{Binding Path=Language, Converter={converters:EnumToBooleanConverter}, ConverterParameter={x:Static infrastructures:Language.English}}">
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="24"
-                                                   Height="24"
+                                            <Image Width="16"
+                                                   Height="16"
                                                    Margin="5,0"
                                                    Source="{DynamicResource UsaDrawingImage}" />
                                             <TextBlock VerticalAlignment="Center" Text="English" />

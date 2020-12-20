@@ -6,12 +6,11 @@ using PhasmophobiaSaveEditor.Handlers;
 using PhasmophobiaSaveEditor.Logging;
 using PhasmophobiaSaveEditor.Models.Configuration;
 using PhasmophobiaSaveEditor.Utils;
-using PhasmophobiaSaveEditor.ViewModels;
 using PhasmophobiaSaveEditor.Views;
 
 namespace PhasmophobiaSaveEditor
 {
-    public partial class App : Application
+    public partial class App
     {
         public App()
         {
@@ -61,11 +60,6 @@ namespace PhasmophobiaSaveEditor
 
             Current.MainWindow.Show();
             Current.MainWindow.Focus();
-
-            if (Current.MainWindow.DataContext is MainViewModel vm)
-            {
-                vm.Init();
-            }
         }
 
         private void OnMainWindowClosing(object sender, CancelEventArgs e)

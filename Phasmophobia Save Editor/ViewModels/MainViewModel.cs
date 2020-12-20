@@ -14,11 +14,8 @@ using PhasmophobiaSaveEditor.Views;
 
 namespace PhasmophobiaSaveEditor.ViewModels
 {
-    internal class MainViewModel : BaseBindable
+    internal class MainViewModel : BaseBindable, IWindowViewModel
     {
-        private readonly SaveService saveService;
-        private List<object> editableSaveProperties;
-
         private readonly List<string> itemsList = new List<string>
         {
             "EMFReaderInventory",
@@ -45,6 +42,8 @@ namespace PhasmophobiaSaveEditor.ViewModels
             "HeadMountedCameraInventory"
         };
 
+        private readonly SaveService saveService;
+        private List<object> editableSaveProperties;
         private PhasmophobiaSave phasmophobiaSave;
         private Theme theme = Theme.Light;
 
@@ -58,9 +57,7 @@ namespace PhasmophobiaSaveEditor.ViewModels
         }
 
         public ICommand OpenAboutCommand { get; }
-
         public ICommand ReloadCommand { get; }
-
         public ICommand SaveCommand { get; }
         public ICommand SetAllItemsCommand { get; }
 
@@ -105,6 +102,11 @@ namespace PhasmophobiaSaveEditor.ViewModels
             this.Load();
         }
 
+        public void OnLoaded(Window window)
+        {
+            this.Load();
+        }
+
         private void Load()
         {
             if (!File.Exists(this.saveService.Filename))
@@ -125,7 +127,7 @@ namespace PhasmophobiaSaveEditor.ViewModels
             {
                 new EditableSaveStringProperty(this.PhasmophobiaSave.StringData.FirstOrDefault(x => x.Key.Equals("GhostType", StringComparison.InvariantCultureIgnoreCase)), true),
                 new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("myTotalExp", StringComparison.InvariantCultureIgnoreCase)), 0, 999999, 10),
-                new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("PlayersMoney", StringComparison.InvariantCultureIgnoreCase)), 0, 24999, 10),
+                new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("PlayersMoney", StringComparison.InvariantCultureIgnoreCase)), 0, 999999, 10),
                 new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("EMFReaderInventory", StringComparison.InvariantCultureIgnoreCase)), 0, 999, 3),
                 new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("FlashlightInventory", StringComparison.InvariantCultureIgnoreCase)), 0, 999, 3),
                 new EditableSaveIntProperty(this.PhasmophobiaSave.IntData.FirstOrDefault(x => x.Key.Equals("CameraInventory", StringComparison.InvariantCultureIgnoreCase)), 0, 999, 3),

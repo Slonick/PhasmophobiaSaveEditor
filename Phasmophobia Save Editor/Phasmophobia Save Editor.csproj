@@ -68,8 +68,8 @@
     <Compile Include="Controls\Dialog\MessageDialogCommands.cs" />
     <Compile Include="Controls\DropDownButton\DropDownButton.cs" />
     <Compile Include="Controls\DropDownButton\DropDownButtonPosition.cs" />
-    <Compile Include="Controls\ExceptionWindow.cs" />
-    <Compile Include="Controls\FluentWindow.cs" />
+    <Compile Include="Controls\Window\ExceptionWindow.cs" />
+    <Compile Include="Controls\Window\FluentWindow.cs" />
     <Compile Include="Controls\Fluent\AcrylicPanel.cs" />
     <Compile Include="Controls\Fluent\FluentAssist.cs" />
     <Compile Include="Controls\Fluent\FluentControl.cs" />
@@ -77,10 +77,11 @@
     <Compile Include="Controls\Fluent\FluentShadowDepth.cs" />
     <Compile Include="Controls\Fluent\InnerGlow.cs" />
     <Compile Include="Controls\Fluent\MathUtilities.cs" />
+    <Compile Include="ViewModels\Base\IWindowViewModel.cs" />
     <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
     <Compile Include="Controls\NumericUpDown\NumericUpDownCommands.cs" />
     <Compile Include="Controls\SplitButton.cs" />
-    <Compile Include="Controls\STWindow.cs" />
+    <Compile Include="Controls\Window\STWindow.cs" />
     <Compile Include="Converters\AnyBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\Base\MarkupMultiValueConverter.cs" />
     <Compile Include="Converters\Base\MarkupValueConverter.cs" />
@@ -287,6 +288,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Assets\Images\noise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

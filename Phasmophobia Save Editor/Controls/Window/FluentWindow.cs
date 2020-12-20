@@ -19,6 +19,7 @@ namespace PhasmophobiaSaveEditor.Controls
         public FluentWindow()
         {
             WindowResizer.ApplyToWindow(this);
+            this.Loaded += this.OnLoaded;
         }
 
         static FluentWindow()
@@ -85,9 +86,10 @@ namespace PhasmophobiaSaveEditor.Controls
             AcrylicHelper.EnableBlur(this, this.FluentOpacity);
         }
 
-        protected override void OnLoaded(Window sender)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            this.Loaded -= this.OnLoaded;
             this.UpdateBlur();
         }
     }
-}   
+}
