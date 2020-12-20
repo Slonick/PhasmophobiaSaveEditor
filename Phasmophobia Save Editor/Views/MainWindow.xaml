@@ -19,7 +19,7 @@
                        d:DataContext="{d:DesignInstance vm:MainViewModel}"
                        FluentOpacity="210"
                        Style="{DynamicResource {x:Type controls:FluentWindow}}"
-                       WindowStartupLocation="CenterScreen"
+                       WindowStartupLocation="Manual"
                        mc:Ignorable="d">
     <controls:STWindow.AdditionalContent>
         <StackPanel Orientation="Horizontal">
