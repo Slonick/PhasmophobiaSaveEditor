@@ -54,7 +54,16 @@ namespace PhasmophobiaSaveEditor.ViewModels
             this.ReloadCommand = new RelayCommand(this.ReloadCommandExecute);
             this.OpenAboutCommand = new RelayCommand(this.OpenAboutCommandExecute);
             this.SetAllItemsCommand = new RelayCommand(this.SetAllItemsCommandExecute);
+            this.DebugSaveCommand = new RelayCommand(this.DebugSaveCommandExecute);
+            HotKey.Register(Key.D, KeyModifier.Ctrl | KeyModifier.Shift, DebugSaveCommand);
         }
+
+        private void DebugSaveCommandExecute()
+        {
+            MessageDialog.ShowDialog(DialogParameters.Success(this.saveService.ReadRaw()));
+        }
+
+        public ICommand DebugSaveCommand { get; }
 
         public ICommand OpenAboutCommand { get; }
         public ICommand ReloadCommand { get; }

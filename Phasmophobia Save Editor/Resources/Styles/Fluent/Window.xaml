@@ -9,7 +9,9 @@
                     xmlns:themes="clr-namespace:PhasmophobiaSaveEditor.Themes">
 
     <DataTemplate DataType="{x:Type system:String}">
-        <TextBlock Text="{Binding Path=.}" TextWrapping="Wrap" />
+        <ScrollViewer>
+            <TextBlock Text="{Binding Path=.}" TextWrapping="Wrap" />
+        </ScrollViewer>
     </DataTemplate>
 
     <markupExtensions:DynamicResourceProxy x:Key="AlternativeBrushProxy" ProxyValue="{Binding Source={x:Static themes:FluentPalette.Palette}, Path=AlternativeColor, Converter={converters:ColorToBrushConverter}}" />

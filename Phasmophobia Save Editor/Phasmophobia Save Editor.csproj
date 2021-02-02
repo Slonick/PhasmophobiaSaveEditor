@@ -77,6 +77,7 @@
     <Compile Include="Controls\Fluent\FluentShadowDepth.cs" />
     <Compile Include="Controls\Fluent\InnerGlow.cs" />
     <Compile Include="Controls\Fluent\MathUtilities.cs" />
+    <Compile Include="Services\HotKey.cs" />
     <Compile Include="ViewModels\Base\IWindowViewModel.cs" />
     <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
     <Compile Include="Controls\NumericUpDown\NumericUpDownCommands.cs" />
