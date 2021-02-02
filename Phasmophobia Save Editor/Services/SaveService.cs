@@ -47,5 +47,11 @@ namespace PhasmophobiaSaveEditor.Services
                 return false;
             }
         }
+
+        public string ReadRaw()
+        {
+            var data = File.ReadAllText(this.Filename);
+            return JsonSerializer.FormatJson(ScrambleData(data));
+        }
     }
 }
